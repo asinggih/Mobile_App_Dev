@@ -22,6 +22,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String STUDENT_INFO ="student_info";
     private static final String PROGRAMS ="programs";
     private static final String PROGRAM_ENROLMENT ="program_enrolment";
+    private static final String EXAM ="exam";
+    private static final String EXAM_ALLOCATION ="exam_allocation";
 
 
 
@@ -30,6 +32,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
                         Column Names
 
         ---------------------------=====--------------- */
+
+    // user table
     private static final String USER_ID = "id";
     private static final String USER_FNAME = "first_name";
     private static final String USER_LNAME = "last_name";
@@ -57,6 +61,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String PROGRAM = "program";
 
 
+    // exam table
+    private static final String EXAM_ID ="id";
+    private static final String EXAM_NAME ="name";
+    private static final String EXAM_DATE ="date";
+    private static final String EXAM_TIME ="time";
+    private static final String EXAM_LOCATION ="location";
+
+    // exam_allocation table
+    private static final String E_ALLOC_ID ="id";
+//    private static final String EXAM = "exam";            // previously defined
+//    private static final String PROGRAM ="program";
+
+
+
+
     public DatabaseManager(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -73,6 +92,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + STUDENT_INFO);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PROGRAMS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PROGRAM_ENROLMENT);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EXAM);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + EXAM_ALLOCATION);
 
         onCreate(sqLiteDatabase);
     }
@@ -141,7 +162,39 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt = db.compileStatement(createEnrolment);
         stmt.execute();
 
+        // CREATE EXAM TABLE
+        String createExam = "CREATE TABLE IF NOT EXISTS " + EXAM + "(" +
+
+                EXAM_ID         +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                EXAM_NAME       +" VARCHAR(255) NOT NULL, " +
+                EXAM_DATE       +" DATE NOT NULL, " +
+                EXAM_TIME       +" NUMERIC, " +
+                EXAM_LOCATION   +" VARCHAR(255) " +
+
+                ")";
+
+        stmt = db.compileStatement(createExam);
+        stmt.execute();
+
+
+        // CREATE EXAM_ALLOCATION TABLE
+        String createExamAllocation = "CREATE TABLE IF NOT EXISTS " + EXAM_ALLOCATION + "(" +
+
+                E_ALLOC_ID      +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                EXAM            +" INTEGER NOT NULL," +
+                PROGRAM         +" INTEGER NOT NULL," +
+
+                "FOREIGN KEY (" + EXAM + ") REFERENCES " + EXAM + "(id)," +
+                "FOREIGN KEY (" + PROGRAM + ") REFERENCES " + PROGRAMS + "(id)" +
+
+                ")";
+
+        stmt = db.compileStatement(createExamAllocation);
+        stmt.execute();
+
     }
+
+
 
     public void insertUser(String fn, String ln, String uname, String pass){
 
@@ -238,6 +291,55 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void insertExam(String name, String date, String dob, String time, String location){
+
+        String sql = "INSERT OR REPLACE INTO " + EXAM + " ( " +
+
+                EXAM_NAME       + "," +
+                EXAM_DATE       + "," +
+                EXAM_TIME       + "," +
+                EXAM_LOCATION   +
+
+                ")" +
+
+                "VALUES ( ?, ?, ?, ? )";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement(sql);
+
+        stmt.bindString(1, name);
+        stmt.bindString(2, date);
+        stmt.bindString(3, dob);
+        stmt.bindString(4, time);
+        stmt.bindString(5, location);
+
+        stmt.executeInsert();
+        stmt.clearBindings();
+        db.close();
+    }
+
+    public void insertExamAllocation(long studentID, long examID, long progID){
+
+        String sql = "INSERT OR REPLACE INTO " + PROGRAM_ENROLMENT + " ( " +
+
+                STUDENT     + "," +
+                EXAM        + "," +
+                PROGRAM     +
+
+                ")" +
+                "VALUES ( ?, ?, ?)";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement(sql);
+
+        stmt.bindLong(1, studentID);
+        stmt.bindLong(2, examID);
+        stmt.bindLong(3, progID);
+
+        stmt.executeInsert();
+        stmt.clearBindings();
+        db.close();
+    }
 //    String table = "table_name";
 //    String[] columnsToReturn = { "column_1", "column_2" };
 //    String selection = "column_1 =?";
