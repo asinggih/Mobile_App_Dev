@@ -5,4 +5,9 @@
     <string name="usernameLabel">Username</string>
     <string name="passwordLabel">Password</string>
     <string name="login">Login</string>
+    <string name="title_activity_blob">blob</string>
+
+    <string name="nav_student">Stu Rec</string>
+    <string name="nav_todo">Todo</string>
+    <string name="nav_exam">Exam</string>
 </resources>
