@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Student Management Portal</string>
     <string name="action_settings">Settings</string>
+
+    <string name="usernameLabel">Username</string>
+    <string name="passwordLabel">Password</string>
+    <string name="login">Login</string>
 </resources>

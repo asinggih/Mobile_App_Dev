@@ -107,7 +107,12 @@ of the code can be written by any other persons.
 	
 	
 	
-	
+<!-- ## Acknowledgement	 
+
+Icon made by Freepik from www.flaticon.com 
+
+-->
+
 	
 	
 	
