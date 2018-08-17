@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,9 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".blob"
-            android:label="@string/title_activity_blob"></activity>
+            android:name=".Todo"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Exam"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Sturec"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

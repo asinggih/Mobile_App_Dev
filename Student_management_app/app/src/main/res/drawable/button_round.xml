@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--<item android:state_pressed="true" android:color="#24619A">-->
-        <!--<shape android:shape="rectangle"  >-->
-            <!--<corners android:radius="10dip" />-->
-        <!--</shape>-->
-    <!--</item>-->
-
-    <!--<item android:state_focused="true">-->
-        <!--<shape android:shape="rectangle"  >-->
-            <!--<corners android:radius="10dip" />-->
-            <!--<stroke android:width="1dip" android:color="#24619A" />-->
-            <!--<solid android:color="#24619A"/>-->
-        <!--</shape>-->
-    <!--</item>-->
-
-    <!--<item>-->
-        <!--<shape android:shape="rectangle"  >-->
-            <!--<corners android:radius="10dip" />-->
-            <!--<stroke android:width="1dip" android:color="#EEF0F1" />-->
-            <!--<solid android:color="#EEF0F1" />-->
-        <!--</shape>-->
-    <!--</item>-->
 
     <item android:state_pressed="true">
         <shape>
             <solid
-                android:color="#DADADA"/>
-            <stroke
-                android:width="1dp"
-                android:color="#4C468C"/>
+                android:color="@color/colorHighlightDark"/>
+            <!--<stroke-->
+                <!--android:width="1dp"-->
+                <!--android:color="#4C468C"/>-->
             <corners
                 android:radius="20dp"/>
             <padding
@@ -44,10 +23,10 @@
     <item>
         <shape>
             <solid
-                android:color="#EEF0F1"/>
-            <stroke
-                android:width="1dp"
-                android:color="#4C468C"/>
+                android:color="@color/colorHighlight"/>
+            <!--<stroke-->
+                <!--android:width="1dp"-->
+                <!--android:color="#4C468C"/>-->
             <corners
                 android:radius="20dp"/>
             <padding

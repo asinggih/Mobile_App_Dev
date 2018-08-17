@@ -7,7 +7,10 @@
     <string name="login">Login</string>
     <string name="title_activity_blob">blob</string>
 
-    <string name="nav_student">Stu Rec</string>
-    <string name="nav_todo">Todo</string>
-    <string name="nav_exam">Exam</string>
+    <string name="nav_student">STU-REC</string>
+    <string name="nav_todo">TODO</string>
+    <string name="nav_exam">EXAM</string>
+    <string name="title_activity_todo">todo</string>
+
+    <string name="search_hint">Enter student\'s name</string>
 </resources>

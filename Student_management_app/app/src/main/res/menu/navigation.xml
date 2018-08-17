@@ -4,16 +4,19 @@
     <item
         android:id="@+id/navigation_sturec"
         android:icon="@drawable/graduate"
+        android:iconTint="@color/colorAccent"
         android:title="@string/nav_student" />
 
     <item
         android:id="@+id/navigation_todo"
         android:icon="@drawable/list"
+        android:iconTint="@color/colorAccent"
         android:title="@string/nav_todo" />
 
     <item
         android:id="@+id/navigation_exam"
         android:icon="@drawable/exam"
+        android:iconTint="@color/colorAccent"
         android:title="@string/nav_exam" />
 
 </menu>

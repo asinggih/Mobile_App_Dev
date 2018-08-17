@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <!--<color name="colorPrimary">#3F51B5</color>-->
     <!--<color name="colorPrimaryDark">#303F9F</color>-->
     <!--<color name="colorAccent">#FF4081</color>-->
 
-    <color name="colorPrimary">#625BB1</color>
-    <color name="colorPrimaryDark">#4C468C</color>
-    <color name="colorAccent">#86DBD5</color>
+    <color name="colorPrimary">#665B7A</color>
+    <color name="colorPrimaryDark">#413A4E</color>
+    <color name="colorAccent">#87EDD4</color>
+
+    <color name="colorWhite">#FBFFF4</color>
+    <color name="colorHighlight">#FF808A</color>
+    <color name="colorHighlightDark">#BA5E65</color>
+
+    <color name="InactiveBottomNav">#413A4E</color>
+
+    <!--<color name="colorPrimary">#665B7A</color>-->
+    <!--<color name="colorPrimaryDark">#413A4E</color>-->
+    <!--<color name="colorAccent">#FF808A</color>-->
+    <!--<color name="colorAccentDark">#BA5E65</color>-->
+
+    <!--<color name="colorWhite">#FBFFF4</color>-->
+    <!--<color name="colorHighlight">#87EDD4</color>-->
+    <!--<color name="colorHighlightDark">#63AD9B</color>-->
+
+    <!--<color name="InactiveBottomNav">#413A4E</color>-->
+
 </resources>
