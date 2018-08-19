@@ -1,8 +1,13 @@
+
+package blob.happypetsy.studentmanagementportal;
+
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -24,7 +29,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String PROGRAM_ENROLMENT ="program_enrolment";
     private static final String EXAM ="exam";
     private static final String EXAM_ALLOCATION ="exam_allocation";
-
 
 
     /*  -----------------------------------------------
@@ -74,8 +78,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 //    private static final String PROGRAM ="program";
 
 
-
-
     public DatabaseManager(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -106,7 +108,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // CREATE USERS TABLE
         String createUsers = "CREATE TABLE IF NOT EXISTS " + USER + "(" +
 
-                USER_ID     +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                USER_ID     +" INTEGER NOT NULL PRIMARY KEY,"+
                 USER_FNAME  +" VARCHAR(255) NOT NULL," +
                 USER_LNAME  +" VARCHAR(255) NOT NULL," +
                 USER_UNAME  +" VARCHAR(255) NOT NULL," +
@@ -116,6 +118,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         stmt = db.compileStatement(createUsers);
         stmt.execute();
+
 
         // CREATE STUDENT_INFO TABLE
         String createStuInfo = "CREATE TABLE IF NOT EXISTS " + STUDENT_INFO + "(" +
@@ -192,29 +195,31 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt = db.compileStatement(createExamAllocation);
         stmt.execute();
 
+
     }
 
 
-
-    public void insertUser(String fn, String ln, String uname, String pass){
+    public void insertUser(long id, String fn, String ln, String uname, String pass){
 
         String sql = "INSERT OR REPLACE INTO " + USER + " ( " +
 
+                USER_ID     + "," +
                 USER_FNAME  + "," +
                 USER_LNAME  + "," +
                 USER_UNAME  + "," +
                 USER_PASS   +
 
                 ")" +
-                "VALUES ( ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?)";
 
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement(sql);
 
-        stmt.bindString(1, fn);
-        stmt.bindString(2, ln);
-        stmt.bindString(3, uname);
-        stmt.bindString(4, pass);
+        stmt.bindLong(1, id);
+        stmt.bindString(2, fn);
+        stmt.bindString(3, ln);
+        stmt.bindString(4, uname);
+        stmt.bindString(5, pass);
 
         stmt.executeInsert();
         stmt.clearBindings();
@@ -340,7 +345,43 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt.clearBindings();
         db.close();
     }
-//    String table = "table_name";
+    public void deleteUser(String username){
+
+        try {
+            String sql = "DELETE FROM " + USER + " WHERE " + USER_UNAME + "= ?";
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.bindString(1, username);
+            stmt.executeUpdateDelete();
+
+        } catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+    }
+
+    public void deleteStudent(ArrayList<String> stuList){
+
+        String whereCon = stuList.toString();
+        whereCon = whereCon.replace("[","(");
+        whereCon = whereCon.replace("]",")");
+        Log.d("here: ", whereCon);
+
+        try {
+            String sql = "DELETE FROM " + STUDENT_INFO + " WHERE " + STUDENT_ID + " IN " + whereCon;
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.executeUpdateDelete();
+
+        } catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+    }
+
+    //    String table = "table_name";
 //    String[] columnsToReturn = { "column_1", "column_2" };
 //    String selection = "column_1 =?";
 //    String[] selectionArgs = { someValue }; // matched to "?" in selection

@@ -3,6 +3,7 @@ package blob.happypetsy.studentmanagementportal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -11,6 +12,11 @@ import android.widget.Button;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Formatter;
 
 import javax.crypto.SecretKey;
@@ -21,20 +27,37 @@ public class Login extends AppCompatActivity {
 
     Button loginBut;
 
+    blob.happypetsy.studentmanagementportal.DatabaseManager db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
-        Student s1 = new Student(100, "Ad", "Singgih", 20, 'M', "MICT", "118/23 Zetland");
+        blob.happypetsy.studentmanagementportal.Student s1 = new blob.happypetsy.studentmanagementportal.Student(100, "Ad", "Singgih", 20, 'M', "MICT", "118/23 Zetland");
         Log.d("onCreate: ", s1.toString());
+
+        ArrayList<String> rock = new ArrayList<String>();
+//        rock.add("3");
+//        rock.add("4");
+//        rock.add("5");
+//        rock.add("6");
+
+
+
+        db = new blob.happypetsy.studentmanagementportal.DatabaseManager(this);
+
+        // hardcode user of this app for demo purposes
+        // Create new user is not provided since everyone can them do as they please with the records!!
+//        db.insertUser(1,"Bob", "DROP TABLE", "Admin", "supersimple");
+//
+//        db.insertStudent("Aditya", "Singgih", "1990/01/12", "M", "74 Epping Road, Lane Cove", "");
+//        db.insertStudent("Bolb", "ffff", "1990/01/12", "M", "71 ECove", "");
 
 //        String p2 = "password";
 //        String salt = "1234";
 //        int iterations = 10000;
-//        int keyLength = 512;
+//        int keyLength = 256;
 //        char[] passwordChars = p2.toCharArray();
 //        byte[] saltBytes = salt.getBytes();
 //
@@ -44,7 +67,7 @@ public class Login extends AppCompatActivity {
 //        String password = "password";
 //        salt = "1234";
 //        iterations = 10000;
-//        keyLength = 512;
+//        keyLength = 256;
 //        passwordChars = password.toCharArray();
 //        saltBytes = salt.getBytes();
 //
