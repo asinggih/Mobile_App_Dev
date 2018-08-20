@@ -19,8 +19,8 @@ public class Sturec extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_sturec);
 
-        TextView title = (TextView) findViewById(R.id.title_sturec);
-        title.setText("Sturec activity");
+//        TextView title = (TextView) findViewById(R.id.title_sturec);
+//        title.setText("Sturec activity");
 
         searchBar = findViewById(R.id.search_bar);
         searchBar.setOnClickListener(new View.OnClickListener() {
@@ -36,16 +36,32 @@ public class Sturec extends AppCompatActivity {
         botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
 
-                if (R.id.navigation_todo == menuItem.getItemId()){
-                    Intent intent = new Intent(Sturec.this, Todo.class);
-                    startActivity(intent);
-                }
+                    case R.id.navigation_todo:
+                        Intent intent = new Intent(Sturec.this, Todo.class);
+                        startActivity(intent);
+                        break;
 
-                else if (R.id.navigation_exam == menuItem.getItemId()){
-                    Intent intent = new Intent(Sturec.this, Exam.class);
-                    startActivity(intent);
+                    case R.id.navigation_sturec:
+
+                        break;
+
+                    case R.id.navigation_exam:
+                        intent = new Intent(Sturec.this, Exam.class);
+                        startActivity(intent);
+                        break;
                 }
+//
+//                if (R.id.navigation_todo == menuItem.getItemId()){
+//                    Intent intent = new Intent(Sturec.this, Todo.class);
+//                    startActivity(intent);
+//                }
+//
+//                else if (R.id.navigation_exam == menuItem.getItemId()){
+//                    Intent intent = new Intent(Sturec.this, Exam.class);
+//                    startActivity(intent);
+//                }
 
                 return false;
             }

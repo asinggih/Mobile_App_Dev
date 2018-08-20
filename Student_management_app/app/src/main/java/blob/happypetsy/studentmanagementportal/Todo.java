@@ -25,15 +25,32 @@ public class Todo extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                if (R.id.navigation_sturec == menuItem.getItemId()){
-                    Intent intent = new Intent(Todo.this, Sturec.class);
-                    startActivity(intent);
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_todo:
+
+                        break;
+
+                    case R.id.navigation_sturec:
+                        Intent intent = new Intent(Todo.this, Sturec.class);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.navigation_exam:
+                        intent = new Intent(Todo.this, Exam.class);
+                        startActivity(intent);
+                        break;
                 }
 
-                else if (R.id.navigation_exam == menuItem.getItemId()){
-                    Intent intent = new Intent(Todo.this, Exam.class);
-                    startActivity(intent);
-                }
+
+//                if (R.id.navigation_sturec == menuItem.getItemId()){
+//                    Intent intent = new Intent(Todo.this, Sturec.class);
+//                    startActivity(intent);
+//                }
+//
+//                else if (R.id.navigation_exam == menuItem.getItemId()){
+//                    Intent intent = new Intent(Todo.this, Exam.class);
+//                    startActivity(intent);
+//                }
 
                 return false;
             }
