@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/top_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="fill_horizontal"
-        android:weightSum="8"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="8">
 
         <LinearLayout
             android:id="@+id/clear_container"
@@ -26,11 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:queryHint="@string/search_hint"
-                android:iconifiedByDefault="false"
                 android:background="@drawable/search_bar_round"
                 android:clickable="true"
-                />
+                android:iconifiedByDefault="false"
+                android:queryHint="@string/search_hint"
+                android:theme="@style/AppTheme" />
 
         </LinearLayout>
 
@@ -57,14 +58,40 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/title_sturec"
+
+    <RelativeLayout
+        android:layout_below="@+id/top_nav"
+        android:layout_above="@+id/navigation_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/title_sturec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/navigation_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:textAlignment="center"
-        android:textSize="30dp" />
+        android:layout_alignParentBottom="true">
 
-    <include layout="@layout/base_activity" />
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/bottom_navigation_color_selector"
+            app:itemTextColor="@color/bottom_navigation_color_selector"
+            app:menu="@menu/navigation" />
 
-</LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

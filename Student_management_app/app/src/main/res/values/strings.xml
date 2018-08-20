@@ -10,7 +10,40 @@
     <string name="nav_student">STU-REC</string>
     <string name="nav_todo">TODO</string>
     <string name="nav_exam">EXAM</string>
+
     <string name="title_activity_todo">todo</string>
 
+    <!--
+
+                        STUREC STRINGS
+
+    -->
     <string name="search_hint">Enter student\'s name</string>
+    <string name="long_text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt cursus mi, ut tristique lacus mattis et. Vestibulum placerat interdum lobortis. Mauris in quam non purus fringilla fermentum sit amet in magna. Vestibulum porta vehicula nibh at pellentesque. Nullam tempor leo quis mollis tempus. Vivamus non volutpat arcu, vitae faucibus massa. Nam quis varius magna, sit amet pellentesque turpis. Vestibulum velit mi, mollis ut arcu eu, facilisis scelerisque metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fermentum nisi at ligula aliquet, id consectetur est efficitur. Nullam accumsan vel justo eu finibus. Etiam euismod blandit elit, nec pulvinar urna ornare vitae.
+
+Vestibulum sed velit est. Donec rhoncus, est in cursus convallis, neque risus varius purus, eu maximus arcu nulla vitae sapien. Sed ligula nisi, ornare eu lorem sed, dapibus laoreet dolor. Sed accumsan erat ante, eleifend pretium turpis malesuada eu. Proin scelerisque nisi tellus, eget efficitur tellus vestibulum eu. Mauris semper consequat dolor, sed hendrerit libero eleifend ut. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eget congue dolor, in semper magna.
+
+Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus condimentum nunc purus id neque. Sed porta placerat iaculis. Etiam lacinia urna eleifend nulla interdum sollicitudin. Etiam nec tortor vulputate, facilisis mi egestas, tempus purus. In ligula libero, viverra in elit nec, fermentum tempor elit. Vivamus suscipit consequat leo, et auctor sapien venenatis sit amet. Pellentesque congue eleifend ex, vel aliquam magna rutrum quis. Donec mollis lobortis molestie. Phasellus ut lacinia dui, a varius metus. Vivamus pharetra felis mi, vitae pharetra elit sagittis eleifend. Ut bibendum justo erat, ac egestas nisi finibus in. Vestibulum a augue euismod, tincidunt diam in, placerat mi. Nam vitae mollis tellus. Praesent iaculis enim arcu, id dapibus nunc pharetra eu.
+    </string>
+
+
+    <!--
+
+                        TODO STRINGS
+
+    -->
+
+
+    <!--
+
+                        EXAM STRINGS
+
+    -->
+    <string name="exam_search">Enter exam name</string>
+    <string name="title_activity_testtab">testtab</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

@@ -19,19 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Todo"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Exam"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Sturec"
             android:theme="@style/AppTheme.NoActionBar" />
-
     </application>
 
 </manifest>

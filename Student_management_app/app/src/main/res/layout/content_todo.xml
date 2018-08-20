@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <!--<TextView-->
-        <!--android:id="@+id/textView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:paddingTop="10dp"-->
-        <!--android:paddingBottom="10dp"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:textSize="24sp" />-->
+    <!--android:id="@+id/textView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:textColor="@color/colorWhite"-->
+    <!--android:paddingTop="10dp"-->
+    <!--android:paddingBottom="10dp"-->
+    <!--android:paddingLeft="20dp"-->
+    <!--android:textSize="24sp" />-->
 
     <LinearLayout
+        android:id="@+id/top_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="fill_horizontal"
@@ -27,8 +28,8 @@
             android:id="@+id/clear_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:layout_weight="1"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
             <ImageButton
@@ -39,8 +40,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/colorAccent"
-                android:background="@drawable/new_file" />
+                android:background="@drawable/new_file"
+                android:backgroundTint="@color/colorAccent" />
 
         </LinearLayout>
 
@@ -54,44 +55,70 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/undo_icon"
+                android:id="@+id/undo_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/colorAccent"
-                android:background="@drawable/undo" />
+                android:background="@drawable/undo"
+                android:backgroundTint="@color/colorAccent" />
 
             <Button
-                android:id="@+id/done_icon"
+                android:id="@+id/done_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/colorAccent"
-                android:background="@drawable/tick" />
+                android:background="@drawable/tick"
+                android:backgroundTint="@color/colorAccent" />
 
             <Button
-                android:id="@+id/newTask_icon"
+                android:id="@+id/newTask_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/colorAccent"
-                android:background="@drawable/plus" />
+                android:background="@drawable/plus"
+                android:backgroundTint="@color/colorAccent" />
 
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/title_todo"
+    <RelativeLayout
+        android:layout_below="@+id/top_nav"
+        android:layout_above="@+id/navigation_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/title_todo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/navigation_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:textAlignment="center"
-        android:textSize="30dp" />
+        android:layout_alignParentBottom="true">
 
-    <include layout="@layout/base_activity" />
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/bottom_navigation_color_selector"
+            app:itemTextColor="@color/bottom_navigation_color_selector"
+            app:menu="@menu/navigation" />
 
-</LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

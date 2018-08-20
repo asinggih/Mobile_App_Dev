@@ -1,18 +1,20 @@
 
 package blob.happypetsy.studentmanagementportal;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Student {
 
     private int studentID, age;
     private String firstName, lastName, course, address;
+    private ArrayList<Integer> upcomingExams; // ArrayList of examIDs
     private char gender;
 
     public Student (){
     }
 
-    public Student (int sID, String fName, String lName, int age, char gender, String course, String address) {
+    public Student (int sID, String fName, String lName, int age, char gender, String course, String address, ArrayList<Integer> upcomingExams) {
         this.studentID = sID;
         this.firstName = fName;
         this.lastName = lName;
@@ -20,6 +22,7 @@ public class Student {
         this.gender = gender;
         this.course = course;
         this.address = address;
+        this.upcomingExams = upcomingExams;
     }
 
     // Setters
@@ -51,6 +54,10 @@ public class Student {
         this.address = address;
     }
 
+    public void setUpcomingExams(int examID) {
+        this.upcomingExams.add(examID);
+    }
+
 
     // Getters
     public int getStudentID(){
@@ -77,9 +84,9 @@ public class Student {
         return course;
     }
 
-    public String getAddress() {
-        return address;
-    }
+    public String getAddress() { return address; }
+
+    public ArrayList<Integer> getUpcomingExams() { return upcomingExams; }
 
     @Override
     public String toString() {
@@ -90,7 +97,8 @@ public class Student {
                 String.valueOf(age),
                 String.valueOf(gender),
                 course,
-                address
+                address,
+                upcomingExams.toString()
         };
         return Arrays.toString(out);
     }

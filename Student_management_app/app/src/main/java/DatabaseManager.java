@@ -73,7 +73,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String EXAM_ID ="id";
     private static final String EXAM_NAME ="name";
     private static final String EXAM_DATE ="date";
-    private static final String EXAM_TIME ="time";
+    private static final String EXAM_START_TIME ="start_time";
+    private static final String EXAM_END_TIME ="end_time";
     private static final String EXAM_LOCATION ="location";
 
     // exam_allocation table
@@ -175,7 +176,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 EXAM_ID         +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 EXAM_NAME       +" VARCHAR(255) NOT NULL, " +
                 EXAM_DATE       +" DATE NOT NULL, " +
-                EXAM_TIME       +" NUMERIC, " +
+                EXAM_START_TIME +" NUMERIC, " +
+                EXAM_END_TIME   +" NUMERIC, " +
                 EXAM_LOCATION   +" VARCHAR(255) " +
 
                 ")";
@@ -398,26 +400,27 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
        -------------------------------------------------------------------------------------------*/
 
-    public void insertExam(String name, String date, String dob, String time, String location){
+    public void insertExam(String name, String date, String startTime, String endTime, String location){
 
         String sql = "INSERT OR REPLACE INTO " + EXAM + " ( " +
 
                 EXAM_NAME       + "," +
                 EXAM_DATE       + "," +
-                EXAM_TIME       + "," +
+                EXAM_START_TIME + "," +
+                EXAM_END_TIME   + "," +
                 EXAM_LOCATION   +
 
                 ")" +
 
-                "VALUES ( ?, ?, ?, ? )";
+                "VALUES ( ?, ?, ?, ?, ? )";
 
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement(sql);
 
         stmt.bindString(1, name);
         stmt.bindString(2, date);
-        stmt.bindString(3, dob);
-        stmt.bindString(4, time);
+        stmt.bindString(3, startTime);
+        stmt.bindString(4, endTime);
         stmt.bindString(5, location);
 
         stmt.executeInsert();

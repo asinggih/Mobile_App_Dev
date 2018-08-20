@@ -35,10 +35,14 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        blob.happypetsy.studentmanagementportal.Student s1 = new blob.happypetsy.studentmanagementportal.Student(100, "Ad", "Singgih", 20, 'M', "MICT", "118/23 Zetland");
-        Log.d("onCreate: ", s1.toString());
+        ArrayList<Integer> exams = new ArrayList<Integer>();
+        exams.add(3);
 
-        ArrayList<String> rock = new ArrayList<String>();
+//        blob.happypetsy.studentmanagementportal.Student s1 = new blob.happypetsy.studentmanagementportal.Student(100, "Ad", "Singgih", 20, 'M', "MICT", "118/23 Zetland", exams);
+//        s1.setUpcomingExams(1);
+//        Log.d("onCreate: ", s1.toString());
+
+//        ArrayList<String> rock = new ArrayList<String>();
 //        rock.add("3");
 //        rock.add("4");
 //        rock.add("5");
@@ -63,7 +67,7 @@ public class Login extends AppCompatActivity {
         values.add("random_update");
         values.add("/blob/com");
 
-        db.updateStudentInfo(8, keys, values);
+//        db.updateStudentInfo(8, keys, values);
 
 //        String p2 = "password";
 //        String salt = "1234";
