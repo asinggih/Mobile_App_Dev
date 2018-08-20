@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.List;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -53,6 +54,16 @@ public class Login extends AppCompatActivity {
 //
 //        db.insertStudent("Aditya", "Singgih", "1990/01/12", "M", "74 Epping Road, Lane Cove", "");
 //        db.insertStudent("Bolb", "ffff", "1990/01/12", "M", "71 ECove", "");
+
+        ArrayList<String> keys = new ArrayList<String>();
+        keys.add("first_name");
+        keys.add("img_path");
+
+        ArrayList<String> values = new ArrayList<String>();
+        values.add("random_update");
+        values.add("/blob/com");
+
+        db.updateStudentInfo(8, keys, values);
 
 //        String p2 = "password";
 //        String salt = "1234";

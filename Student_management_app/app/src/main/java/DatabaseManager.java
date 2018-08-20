@@ -10,7 +10,11 @@ import android.database.sqlite.SQLiteStatement;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -198,6 +202,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     }
 
+    /* -------------------------------------------------------------------------------------------
+
+                                          User Ops
+
+       -------------------------------------------------------------------------------------------*/
 
     public void insertUser(long id, String fn, String ln, String uname, String pass){
 
@@ -225,6 +234,32 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt.clearBindings();
         db.close();
     }
+
+    public void deleteUser(String username){
+
+        try {
+            String sql = "DELETE FROM " + USER + " WHERE " + USER_UNAME + "= ?";
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.bindString(1, username);
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+            db.close();
+
+        } catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+    }
+
+
+    /* -------------------------------------------------------------------------------------------
+
+                                         Student Records Ops
+
+       -------------------------------------------------------------------------------------------*/
+
 
     public void insertStudent(String fn, String ln, String dob, String gender, String addr, String imgPath){
 
@@ -255,6 +290,67 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
 
     }
+
+    public void deleteStudent(ArrayList<String> stuList){
+
+        String whereCon = stuList.toString();
+        whereCon = whereCon.replace("[","(");
+        whereCon = whereCon.replace("]",")");
+        Log.d("here: ", whereCon);
+
+        try {
+            String sql = "DELETE FROM " + STUDENT_INFO + " WHERE " + STUDENT_ID + " IN " + whereCon;
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+            db.close();
+
+        } catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+    }
+
+    public void updateStudentInfo(long id, ArrayList<String> keys, ArrayList<String> values){
+
+        String cond = TextUtils.join(" = ?, ", keys);
+
+        try {
+
+            String sql = "UPDATE " + STUDENT_INFO + " SET " +
+                    cond + " = ? " + "WHERE " +
+                    STUDENT_ID + " = ?";
+
+            Log.d("updateStudent: ", sql);
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            for (int i=0; i < values.size() ; i++){
+                stmt.bindString(i+1, values.get(i));
+            }
+            stmt.bindLong(values.size()+1, id);
+
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+            db.close();
+
+        }
+        catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+
+
+    }
+
+
+    /* -------------------------------------------------------------------------------------------
+
+                                          Programs Ops
+
+       -------------------------------------------------------------------------------------------*/
 
     public void insertPrograms(String progName){
 
@@ -295,6 +391,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt.clearBindings();
         db.close();
     }
+
+    /* -------------------------------------------------------------------------------------------
+
+                                          Exams Ops
+
+       -------------------------------------------------------------------------------------------*/
 
     public void insertExam(String name, String date, String dob, String time, String location){
 
@@ -345,47 +447,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt.clearBindings();
         db.close();
     }
-    public void deleteUser(String username){
 
-        try {
-            String sql = "DELETE FROM " + USER + " WHERE " + USER_UNAME + "= ?";
 
-            SQLiteDatabase db = this.getWritableDatabase();
-            SQLiteStatement stmt = db.compileStatement(sql);
 
-            stmt.bindString(1, username);
-            stmt.executeUpdateDelete();
-
-        } catch (SQLException e) {
-            Log.w("Exception:", e);
-        }
-    }
-
-    public void deleteStudent(ArrayList<String> stuList){
-
-        String whereCon = stuList.toString();
-        whereCon = whereCon.replace("[","(");
-        whereCon = whereCon.replace("]",")");
-        Log.d("here: ", whereCon);
-
-        try {
-            String sql = "DELETE FROM " + STUDENT_INFO + " WHERE " + STUDENT_ID + " IN " + whereCon;
-
-            SQLiteDatabase db = this.getWritableDatabase();
-            SQLiteStatement stmt = db.compileStatement(sql);
-
-            stmt.executeUpdateDelete();
-
-        } catch (SQLException e) {
-            Log.w("Exception:", e);
-        }
-    }
 
     //    String table = "table_name";
-//    String[] columnsToReturn = { "column_1", "column_2" };
-//    String selection = "column_1 =?";
-//    String[] selectionArgs = { someValue }; // matched to "?" in selection
-//    Cursor dbCursor = db.query(table, columnsToReturn, selection, selectionArgs, null, null, null);
+    //    String[] columnsToReturn = { "column_1", "column_2" };
+    //    String selection = "column_1 =?";
+    //    String[] selectionArgs = { someValue }; // matched to "?" in selection
+    //    Cursor dbCursor = db.query(table, columnsToReturn, selection, selectionArgs, null, null, null);
 
     public ArrayList<String> getAllStudents() {
 
