@@ -42,18 +42,10 @@ public class Todo extends AppCompatActivity {
                 }
 
 
-//                if (R.id.navigation_sturec == menuItem.getItemId()){
-//                    Intent intent = new Intent(Todo.this, Sturec.class);
-//                    startActivity(intent);
-//                }
-//
-//                else if (R.id.navigation_exam == menuItem.getItemId()){
-//                    Intent intent = new Intent(Todo.this, Exam.class);
-//                    startActivity(intent);
-//                }
 
                 return false;
             }
         });
+
     }
 }

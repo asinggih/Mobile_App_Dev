@@ -41,9 +41,7 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
 
     -->
     <string name="exam_search">Enter exam name</string>
-    <string name="title_activity_testtab">testtab</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="upcoming_tab_text">Upcoming Exams</string>
+    <string name="all_tab_text">All Exams</string>
+
 </resources>

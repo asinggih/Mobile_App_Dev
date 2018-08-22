@@ -50,9 +50,6 @@ public class Student {
         this.course = course;
     }
 
-    public void setAddress(String address){
-        this.address = address;
-    }
 
     public void setUpcomingExams(int examID) {
         this.upcomingExams.add(examID);

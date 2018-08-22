@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         ArrayList<Integer> exams = new ArrayList<Integer>();
         exams.add(3);
 
-//        blob.happypetsy.studentmanagementportal.Student s1 = new blob.happypetsy.studentmanagementportal.Student(100, "Ad", "Singgih", 20, 'M', "MICT", "118/23 Zetland", exams);
+
 //        s1.setUpcomingExams(1);
 //        Log.d("onCreate: ", s1.toString());
 
@@ -47,6 +47,14 @@ public class Login extends AppCompatActivity {
 //        rock.add("4");
 //        rock.add("5");
 //        rock.add("6");
+
+
+//        blob.happypetsy.studentmanagementportal.Student s1 = new blob.happypetsy.studentmanagementportal.Student(11, "aman", "wadhawan", 23, 'm', "mict", "central", exams);
+//
+////        Logd
+//
+//        s1.setLastName("didi");
+//        Log.d("this is get address", s1.getAddress());
 
 
 
@@ -84,8 +92,8 @@ public class Login extends AppCompatActivity {
 //        iterations = 10000;
 //        keyLength = 256;
 //        passwordChars = password.toCharArray();
-//        saltBytes = salt.getBytes();
-//
+////        saltBytes = salt.getBytes();
+////
 //        byte[] hashedBytes = hashPassword(passwordChars, saltBytes, iterations, keyLength);
 //        String hashedString = bytesToHexString(hashedBytes);
 //

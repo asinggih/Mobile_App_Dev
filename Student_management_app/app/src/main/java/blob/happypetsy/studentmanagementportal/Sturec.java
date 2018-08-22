@@ -19,8 +19,8 @@ public class Sturec extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_sturec);
 
-//        TextView title = (TextView) findViewById(R.id.title_sturec);
-//        title.setText("Sturec activity");
+        TextView title = (TextView) findViewById(R.id.title_sturec);
+        title.setText("Sturec activity");
 
         searchBar = findViewById(R.id.search_bar);
         searchBar.setOnClickListener(new View.OnClickListener() {
