@@ -27,7 +27,6 @@ import javax.crypto.spec.PBEKeySpec;
 public class Login extends AppCompatActivity {
 
     Button loginBut;
-
     blob.happypetsy.studentmanagementportal.DatabaseManager db;
 
     @Override

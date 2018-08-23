@@ -41,7 +41,9 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
 
     -->
     <string name="exam_search">Enter exam name</string>
-    <string name="upcoming_tab_text">Upcoming Exams</string>
-    <string name="all_tab_text">All Exams</string>
+    <string name="upcoming_tab_text">Upcoming</string>
+    <string name="all_tab_text">Past</string>
+    <string name="title_activity_add__exam">Add_Exam</string>
+    <string name="add_exam_heading">New Exam Details</string>
 
 </resources>

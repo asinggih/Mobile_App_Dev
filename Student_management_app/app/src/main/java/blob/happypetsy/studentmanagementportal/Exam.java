@@ -8,11 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class Exam extends AppCompatActivity {
 
+    Button newExamBut;
     private CustomPageAdapter pa;
-
     private ViewPager vp;
 
     @Override
@@ -20,6 +22,14 @@ public class Exam extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_exam);
 
+        newExamBut = (Button) findViewById(R.id.newExam_button);
+        newExamBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Exam.this, Add_Exam.class);
+                startActivity(intent);
+            }
+        });
 
         pa = new CustomPageAdapter(getSupportFragmentManager());
 
@@ -29,7 +39,6 @@ public class Exam extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(vp);
-
 
         tabLayout.getTabAt(0).setText(R.string.upcoming_tab_text);
         tabLayout.getTabAt(1).setText(R.string.all_tab_text);
