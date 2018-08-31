@@ -46,4 +46,12 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
     <string name="title_activity_add__exam">Add_Exam</string>
     <string name="add_exam_heading">New Exam Details</string>
 
+    <string name="exam_name_hint">Exam Name</string>
+    <!--<string name="exam_date">Enter exam name</string>-->
+    <string name="exam_location_hint">Exam Location</string>
+    <!--<string name="exam_search">Enter exam name</string>-->
+    <string name="cancel_label">Cancel</string>
+    <string name="submit_label">Submit</string>
+
+
 </resources>
