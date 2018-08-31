@@ -13,5 +13,7 @@
 
     <color name="InactiveBottomNav">#282043</color>
 
+    <color name="default_text_col">#5B5B5B</color>
+
 
 </resources>
