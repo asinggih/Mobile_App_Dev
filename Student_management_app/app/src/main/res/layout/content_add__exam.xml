@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -54,11 +56,13 @@
                     tools:text="@string/add_exam_heading" />
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/name_input_layout"
                     android:hint="@string/exam_name_hint"
                     android:theme="@style/LoginTextInputLayoutStyle"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:errorEnabled="true"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
 
@@ -74,10 +78,12 @@
 
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/location_input_layout"
                     android:hint="@string/exam_location_hint"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:errorEnabled="true"
                     android:theme="@style/LoginTextInputLayoutStyle"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
@@ -93,11 +99,13 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/date_input_layout"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/exam_date_hint"
                     android:theme="@style/LoginTextInputLayoutStyle"
+                    app:errorEnabled="true"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
 
@@ -126,6 +134,7 @@
                         android:paddingLeft="5dp"
                         android:layout_marginRight="60dp"
                         android:layout_weight="1"
+                        android:background="@drawable/customborder"
                         android:orientation="vertical">
 
                         <TextView
@@ -150,6 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/customborder"
                         android:orientation="vertical">
 
                         <TextView
@@ -172,37 +182,31 @@
                 </LinearLayout>
 
 
-
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="70dp">
+                    android:layout_marginTop="70dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/cancel_exam_form"
-                        android:layout_width="match_parent"
-                        android:layout_height="37dp"
-                        android:background="@drawable/button_round"
-                        android:textColor="@color/colorWhite"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="20dp"
-                        android:text="@string/cancel_label" />
+                    <!--<Button-->
+                    <!--android:id="@+id/cancel_exam_form"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="37dp"-->
+                    <!--android:background="@drawable/button_round"-->
+                    <!--android:textColor="@color/colorWhite"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginLeft="50dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:text="@string/cancel_label" />-->
 
                     <Button
                         android:id="@+id/submit_exam_form"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="37dp"
                         android:background="@drawable/button_round"
-                        android:textColor="@color/colorWhite"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="50dp"
-                        android:text="@string/submit_label" />
-
+                        android:text="@string/submit_label"
+                        android:textColor="@color/colorWhite" />
 
 
                 </LinearLayout>

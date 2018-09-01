@@ -58,6 +58,7 @@ public class Login extends AppCompatActivity {
 
 
         db = new blob.happypetsy.studentmanagementportal.DatabaseManager(this);
+//        db.insertExam("Soft Con", "06-09-2018", "10:00", "12:00", "4.03 SCC");
 
         // hardcode user of this app for demo purposes
         // Create new user is not provided since everyone can them do as they please with the records!!

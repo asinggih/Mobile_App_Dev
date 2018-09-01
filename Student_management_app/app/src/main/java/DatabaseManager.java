@@ -73,8 +73,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String EXAM_ID ="id";
     private static final String EXAM_NAME ="name";
     private static final String EXAM_DATE ="date";
-    private static final String EXAM_START_TIME ="start_time";
-    private static final String EXAM_END_TIME ="end_time";
+    private static final String EXAM_START_TIME ="time_start";
+    private static final String EXAM_END_TIME ="time_end";
     private static final String EXAM_LOCATION ="location";
 
     // exam_allocation table
