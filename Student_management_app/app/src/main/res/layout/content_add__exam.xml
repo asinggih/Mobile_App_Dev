@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
     android:descendantFocusability="beforeDescendants"
+    android:background="@color/colorRealWhite"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 

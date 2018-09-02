@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/tools">
 
+
     <color name="colorPrimary">#665B7A</color>
+    <color name="colorPrimaryLight">#817892</color>
     <color name="colorPrimaryDark">#413A4E</color>
     <color name="colorAccent">#87EDD4</color>
+    <color name="colorMainBackground">#EAEAED</color>
 
 
     <color name="colorWhite">#FBFFF4</color>
@@ -15,5 +18,7 @@
 
     <color name="default_text_col">#5B5B5B</color>
     <color name="colorError">#C42F2F</color>
+    <color name="colorRealWhite">#FFFFFF</color>
 
+    <color name="color"></color>
 </resources>
