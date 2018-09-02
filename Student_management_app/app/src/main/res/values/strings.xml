@@ -34,6 +34,15 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
 
     -->
 
+    <string name="task_name_hint">Task Name</string>
+    <string name="task_due_hint">Due date</string>
+    <string name="task_location_hint">Location</string>
+
+    <string name="cancel_link">Cancel</string>
+    <string name="add_link">Add</string>
+
+    <string name="show_complete">Show Completed</string>
+
 
     <!--
 
