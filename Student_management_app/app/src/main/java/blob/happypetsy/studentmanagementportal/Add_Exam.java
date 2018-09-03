@@ -1,41 +1,26 @@
 package blob.happypetsy.studentmanagementportal;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
+
+import blob.happypetsy.studentmanagementportal.Helpers.*;
 
 public class Add_Exam extends AppCompatActivity {
 
@@ -46,7 +31,7 @@ public class Add_Exam extends AppCompatActivity {
     Calendar calendar;
     int day, month, year;
 
-    blob.happypetsy.studentmanagementportal.DatabaseManager db;
+    DatabaseManager db;
 
 
     @Override
@@ -54,7 +39,7 @@ public class Add_Exam extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_add__exam);
 
-        db = new blob.happypetsy.studentmanagementportal.DatabaseManager(this);
+        db = new DatabaseManager(this);
 
         nil = (TextInputLayout) findViewById(R.id.name_input_layout);
         lil = (TextInputLayout) findViewById(R.id.location_input_layout);

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Todo"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -92,7 +93,7 @@
         <android.support.v7.widget.CardView
             android:id="@+id/new_task_card"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="300dp"
             app:cardElevation="5dp"
             app:cardCornerRadius="10dp"
@@ -143,6 +144,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:clickable="true"
+                        android:focusable="false"
                         android:inputType="text" />
 
 
@@ -214,27 +217,39 @@
         android:background="@color/colorMainBackground">
 
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <!--<TextView-->
+                <!--android:id="@+id/title_todo"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="TODO activity"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textSize="30dp" />-->
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/task_list_card"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:cardElevation="3dp"
+                app:cardCornerRadius="10dp"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/title_todo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="30dp"
-                android:text="TODO activity"
-                />
+                <ListView
+                    android:id="@+id/todo_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </ScrollView>
+        </LinearLayout>
 
     </RelativeLayout>
 

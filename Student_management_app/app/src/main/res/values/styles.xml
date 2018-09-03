@@ -27,7 +27,6 @@
 
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="colorControlActivated">@color/colorPrimary</item>
-
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">

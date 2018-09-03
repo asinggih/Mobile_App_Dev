@@ -3,7 +3,6 @@ package blob.happypetsy.studentmanagementportal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -12,22 +11,22 @@ import android.widget.Button;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Formatter;
-import java.util.List;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
+
+import blob.happypetsy.studentmanagementportal.Helpers.*;
+import blob.happypetsy.studentmanagementportal.Adapters.*;
+import blob.happypetsy.studentmanagementportal.Wrappers.*;
+
 public class Login extends AppCompatActivity {
 
     Button loginBut;
-    blob.happypetsy.studentmanagementportal.DatabaseManager db;
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,27 +36,7 @@ public class Login extends AppCompatActivity {
         ArrayList<Integer> exams = new ArrayList<Integer>();
         exams.add(3);
 
-
-//        s1.setUpcomingExams(1);
-//        Log.d("onCreate: ", s1.toString());
-
-//        ArrayList<String> rock = new ArrayList<String>();
-//        rock.add("3");
-//        rock.add("4");
-//        rock.add("5");
-//        rock.add("6");
-
-
-//        blob.happypetsy.studentmanagementportal.Student s1 = new blob.happypetsy.studentmanagementportal.Student(11, "aman", "wadhawan", 23, 'm', "mict", "central", exams);
-//
-////        Logd
-//
-//        s1.setLastName("didi");
-//        Log.d("this is get address", s1.getAddress());
-
-
-
-        db = new blob.happypetsy.studentmanagementportal.DatabaseManager(this);
+        db = new DatabaseManager(this);
 //        db.insertExam("Soft Con", "06-09-2018", "10:00", "12:00", "4.03 SCC");
 
         // hardcode user of this app for demo purposes
