@@ -21,6 +21,7 @@
         </activity>
         <activity
             android:name=".Todo"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Exam"
@@ -31,7 +32,12 @@
         <activity
             android:name=".Add_Exam"
             android:label="@string/title_activity_add__exam"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Todo_edit"
+            android:label="@string/title_activity_todo_edit"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

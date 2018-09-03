@@ -41,8 +41,11 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
     <string name="cancel_link">Cancel</string>
     <string name="add_link">Add</string>
 
-    <string name="show_complete">Show Completed</string>
+    <string name="edit_todo_heading">Edit Task Details</string>
+    <string name="checkbox_label">Completed ?</string>
 
+    <string name="show_complete">Show Completed</string>
+    <string name="update_but_label">Update</string>
 
     <!--
 
@@ -64,6 +67,7 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
 
     <string name="cancel_label">Cancel</string>
     <string name="submit_label">Submit</string>
+    <string name="title_activity_todo_edit">todo_edit</string>
 
 
 </resources>

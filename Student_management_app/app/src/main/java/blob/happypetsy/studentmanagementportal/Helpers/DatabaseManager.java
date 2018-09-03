@@ -91,6 +91,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String TODO_NAME = "name";
     private static final String TODO_DUE = "date";
     private static final String TODO_LOCATION = "location";
+    private static final String TODO_DONE_FLAG = "done";
 
 
 
@@ -218,7 +219,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 TODO_ID         +" INTEGER NOT NULL PRIMARY KEY,"+
                 TODO_NAME       +" VARCHAR(255) NOT NULL," +
                 TODO_DUE        +" DATE NOT NULL," +
-                TODO_LOCATION   +" VARCHAR(255)" +
+                TODO_LOCATION   +" VARCHAR(255)," +
+                TODO_DONE_FLAG  +" INTEGER NOT NULL" +
 
                 ")";
 
@@ -485,10 +487,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
                 TODO_NAME     + "," +
                 TODO_DUE        + "," +
-                TODO_LOCATION     +
+                TODO_LOCATION     + "," +
+                TODO_DONE_FLAG  +
 
                 ")" +
-                "VALUES ( ?, ?, ?)";
+                "VALUES ( ?, ?, ?, ?)";
 
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement(sql);
@@ -496,6 +499,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt.bindString(1, task.getTaskName());
         stmt.bindString(2, task.getDate());
         stmt.bindString(3, task.getLocation());
+        stmt.bindLong(4, Long.valueOf(task.getDoneFlag()));
 
 
         stmt.executeInsert();
@@ -503,24 +507,58 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Task> getAllTask() {
+    public void updateTODO(long id, ArrayList<String> keys, ArrayList<String> values){
+
+        String cond = TextUtils.join(" = ?, ", keys);
+
+        try {
+
+            String sql = "UPDATE " + TODO + " SET " +
+                    cond + " = ? " + "WHERE " +
+                    TODO_ID + " = ?";
+
+            Log.d("updateTODO: ", sql);
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            for (int i=0; i < values.size() ; i++){
+                stmt.bindString(i+1, values.get(i));
+            }
+            stmt.bindLong(values.size()+1, id);
+
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+            db.close();
+
+        }
+        catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+
+
+    }
+
+    public ArrayList<Task> getAllTask(String doneFlag) {
 
         ArrayList<Task> TaskList = new ArrayList<Task>();
 
-        String[] columns = new String[] {TODO_NAME, TODO_DUE, TODO_LOCATION}; // we can use null so that it returns everything
+        String[] columns = new String[] {TODO_ID, TODO_NAME, TODO_DUE, TODO_LOCATION, TODO_DONE_FLAG}; // we can use null so that it returns everything
         SQLiteDatabase db = this.getReadableDatabase();
 
         Task task;
 
-        Cursor cursor = db.query(TODO, columns, null, null, null, null, null);
+        Cursor cursor = db.query(TODO, columns, TODO_DONE_FLAG+"=?", new String[] { doneFlag }, null, null, null);
 
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false){ // while cursor is not at the last entry
             TaskList.add(
                     task = new Task(
-                            cursor.getString(0),
+                            cursor.getInt(0),
                             cursor.getString(1),
-                            cursor.getString(2)
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            (int)cursor.getLong(4)
                     )
             );
             cursor.moveToNext();

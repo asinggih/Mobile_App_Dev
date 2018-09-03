@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="5dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         />
 
     <View
@@ -19,6 +21,8 @@
         android:layout_height="fill_parent"
         android:background="#949998"
         android:layout_marginLeft="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         />
 
     <LinearLayout
@@ -27,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:orientation="vertical"
-        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         >
 
         <TextView
@@ -60,14 +65,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="right">
+        android:gravity="right"
+        android:descendantFocusability="blocksDescendants"
+        >
 
         <ImageButton
             android:id="@+id/task_delete"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginRight="20dp"
             android:layout_gravity="center_vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:background="@drawable/cancel" />
 
     </LinearLayout>

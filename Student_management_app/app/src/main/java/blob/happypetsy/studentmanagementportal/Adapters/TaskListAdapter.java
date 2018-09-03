@@ -2,16 +2,21 @@
 package blob.happypetsy.studentmanagementportal.Adapters;
 
 import android.content.Context;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import blob.happypetsy.studentmanagementportal.Helpers.DatabaseManager;
 import blob.happypetsy.studentmanagementportal.R;
 import blob.happypetsy.studentmanagementportal.Wrappers.*;
 
@@ -21,6 +26,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
     private ArrayList<Task> entries;
     private boolean checked = false;
     private boolean[] checkBoxFlag;
+    Task toBeDeleted;
 
     public TaskListAdapter(Context context, ArrayList<Task> entries){
         super(context, R.layout.content_todo, entries);
@@ -29,7 +35,12 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         checkBoxFlag = new boolean [entries.size()];
     }
 
-    public View getView(final int position, View convertView,  ViewGroup parent) {
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,13 +51,16 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         TextView taskName = (TextView) entryItem.findViewById(R.id.task_name);
         TextView taskDue = (TextView) entryItem.findViewById(R.id.task_due_date);
         TextView taskLoc = (TextView) entryItem.findViewById(R.id.task_location);
+        ImageButton deleteBut = (ImageButton) entryItem.findViewById(R.id.task_delete);
 
         Task task = entries.get(position);
 
+        if (task.getDoneFlag() == 1){
+            checkBoxFlag[position] = true;
+        }
         taskName.setText(task.getTaskName());
         taskDue.setText(task.getDate());
         taskLoc.setText(task.getLocation());
-
 
         doneFlag.setChecked(checkBoxFlag[position]);
         doneFlag.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +73,19 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
             }
         });
 
+
+        deleteBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toBeDeleted = entries.get(position);
+                Log.d("onClick: ", "hello");
+                Log.d("onClick: ", toBeDeleted.toString());
+                entries.remove(position);
+                notifyDataSetChanged();
+
+            }
+        });
+
         return entryItem;
 
     }
@@ -67,7 +94,9 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         return checkBoxFlag;
     }
 
-
+    public Task taskToDeleted(){
+        return toBeDeleted;
+    }
 
 
 }
