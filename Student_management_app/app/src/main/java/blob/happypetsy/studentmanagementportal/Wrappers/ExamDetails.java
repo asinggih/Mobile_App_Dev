@@ -1,6 +1,6 @@
 
 
-package blob.happypetsy.studentmanagementportal;
+package blob.happypetsy.studentmanagementportal.Wrappers;
 
 
 import java.util.Calendar;

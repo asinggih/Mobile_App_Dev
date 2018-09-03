@@ -1,5 +1,5 @@
 
-package blob.happypetsy.studentmanagementportal;
+package blob.happypetsy.studentmanagementportal.Helpers;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -15,6 +15,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import blob.happypetsy.studentmanagementportal.Wrappers.Task;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -33,6 +35,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String PROGRAM_ENROLMENT ="program_enrolment";
     private static final String EXAM ="exam";
     private static final String EXAM_ALLOCATION ="exam_allocation";
+    private static final String TODO ="todo";
+
 
 
     /*  -----------------------------------------------
@@ -81,6 +85,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String E_ALLOC_ID ="id";
 //    private static final String EXAM = "exam";            // previously defined
 //    private static final String PROGRAM ="program";
+
+    // todo table
+    private static final String TODO_ID = "id";
+    private static final String TODO_NAME = "name";
+    private static final String TODO_DUE = "date";
+    private static final String TODO_LOCATION = "location";
+
 
 
     public DatabaseManager(Context context){
@@ -201,7 +212,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt = db.compileStatement(createExamAllocation);
         stmt.execute();
 
+        // CREATE TODO TABLE
+        String createTodo = "CREATE TABLE IF NOT EXISTS " + TODO + "(" +
 
+                TODO_ID         +" INTEGER NOT NULL PRIMARY KEY,"+
+                TODO_NAME       +" VARCHAR(255) NOT NULL," +
+                TODO_DUE        +" DATE NOT NULL," +
+                TODO_LOCATION   +" VARCHAR(255)" +
+
+                ")";
+
+        stmt = db.compileStatement(createTodo);
+        stmt.execute();
     }
 
     /* -------------------------------------------------------------------------------------------
@@ -451,14 +473,79 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    /* -------------------------------------------------------------------------------------------
+
+                                          TODO Ops
+
+       -------------------------------------------------------------------------------------------*/
+
+    public void insertTask(Task task){
+
+        String sql = "INSERT OR REPLACE INTO " + TODO + " ( " +
+
+                TODO_NAME     + "," +
+                TODO_DUE        + "," +
+                TODO_LOCATION     +
+
+                ")" +
+                "VALUES ( ?, ?, ?)";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement(sql);
+
+        stmt.bindString(1, task.getTaskName());
+        stmt.bindString(2, task.getDate());
+        stmt.bindString(3, task.getLocation());
 
 
+        stmt.executeInsert();
+        stmt.clearBindings();
+        db.close();
+    }
+
+    public ArrayList<Task> getAllTask() {
+
+        ArrayList<Task> TaskList = new ArrayList<Task>();
+
+        String[] columns = new String[] {TODO_NAME, TODO_DUE, TODO_LOCATION}; // we can use null so that it returns everything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Task task;
+
+        Cursor cursor = db.query(TODO, columns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false){ // while cursor is not at the last entry
+            TaskList.add(
+                    task = new Task(
+                            cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(2)
+                    )
+            );
+            cursor.moveToNext();
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        return TaskList;
+
+    }
+
+
+        /* -------------------------------------------------------------------------------------------
+
+                                          MISC
+
+       -------------------------------------------------------------------------------------------*/
 
     //    String table = "table_name";
     //    String[] columnsToReturn = { "column_1", "column_2" };
     //    String selection = "column_1 =?";
     //    String[] selectionArgs = { someValue }; // matched to "?" in selection
     //    Cursor dbCursor = db.query(table, columnsToReturn, selection, selectionArgs, null, null, null);
+
+
 
     public ArrayList<String> getAllStudents() {
 
