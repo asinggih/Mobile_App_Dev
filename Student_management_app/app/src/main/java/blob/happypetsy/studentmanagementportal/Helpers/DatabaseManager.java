@@ -2,20 +2,29 @@
 package blob.happypetsy.studentmanagementportal.Helpers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.database.sqlite.SQLiteStatement;
 import android.text.TextUtils;
 import android.util.Log;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import blob.happypetsy.studentmanagementportal.Wrappers.Student;
 import blob.happypetsy.studentmanagementportal.Wrappers.Task;
 
 public class DatabaseManager extends SQLiteOpenHelper {
@@ -75,7 +84,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     // exam table
     private static final String EXAM_ID ="id";
-    private static final String EXAM_NAME ="name";
+    private static final String EXAM_NAME ="exam_name";
     private static final String EXAM_DATE ="date";
     private static final String EXAM_START_TIME ="time_start";
     private static final String EXAM_END_TIME ="time_end";
@@ -140,7 +149,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // CREATE STUDENT_INFO TABLE
         String createStuInfo = "CREATE TABLE IF NOT EXISTS " + STUDENT_INFO + "(" +
 
-                STUDENT_ID  +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                STUDENT_ID  +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 FIRST_NAME  +" VARCHAR(255) NOT NULL," +
                 LAST_NAME   +" VARCHAR(255) NOT NULL," +
                 DOB         +" DATE NOT NULL," +
@@ -157,7 +166,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // CREATE PROGRAMS TABLE
         String createPrograms = "CREATE TABLE IF NOT EXISTS " + PROGRAMS + "(" +
 
-                PROGRAM_ID      +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                PROGRAM_ID      +" INTEGER NOT NULL PRIMARY KEY," +
                 PROGRAM_NAME    +" VARCHAR(255) " +
 
                 ")";
@@ -170,7 +179,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // CREATE PROGRAM_ENROLMENT TABLE
         String createEnrolment = "CREATE TABLE IF NOT EXISTS " + PROGRAM_ENROLMENT + "(" +
 
-                ENROLMENT_ID    +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                ENROLMENT_ID    +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 STUDENT         +" INTEGER NOT NULL," +
                 PROGRAM         +" INTEGER NOT NULL," +
 
@@ -185,7 +194,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // CREATE EXAM TABLE
         String createExam = "CREATE TABLE IF NOT EXISTS " + EXAM + "(" +
 
-                EXAM_ID         +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                EXAM_ID         +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 EXAM_NAME       +" VARCHAR(255) NOT NULL, " +
                 EXAM_DATE       +" DATE NOT NULL, " +
                 EXAM_START_TIME +" NUMERIC, " +
@@ -201,12 +210,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // CREATE EXAM_ALLOCATION TABLE
         String createExamAllocation = "CREATE TABLE IF NOT EXISTS " + EXAM_ALLOCATION + "(" +
 
-                E_ALLOC_ID      +" INTEGER PRIMARY KEY AUTOINCREMENT," +
+                E_ALLOC_ID      +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+                STUDENT         +" INTEGER NOT NULL," +
                 EXAM            +" INTEGER NOT NULL," +
-                PROGRAM         +" INTEGER NOT NULL," +
 
-                "FOREIGN KEY (" + EXAM + ") REFERENCES " + EXAM + "(id)," +
-                "FOREIGN KEY (" + PROGRAM + ") REFERENCES " + PROGRAMS + "(id)" +
+
+                "FOREIGN KEY (" + STUDENT + ") REFERENCES " + STUDENT + "(id)," +
+                "FOREIGN KEY (" + EXAM + ") REFERENCES " + EXAM + "(id)" +
 
                 ")";
 
@@ -332,6 +342,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
             stmt.executeUpdateDelete();
             stmt.clearBindings();
+
+            sql = "DELETE FROM program_enrolment where student in " + whereCon;
+            stmt = db.compileStatement(sql);
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+
+            sql = "DELETE FROM exam_allocation where student in" + whereCon;
+            stmt = db.compileStatement(sql);
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+
             db.close();
 
         } catch (SQLException e) {
@@ -371,6 +392,101 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<Student> getAllStudents() {
+
+        LocalDate currentDate = LocalDate.now();
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Student> productRows = new ArrayList<Student>();
+
+//        Log.d("test getting upcoming exam", Arrays.toString(getUpcomingStudentExam(1).get(0)));
+
+        String[] columns = null;
+        Cursor cursor = db.query(STUDENT_INFO, columns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
+
+            ArrayList<Integer> upcomingExams = new ArrayList<>();
+
+            try{
+                for(String[] detail : getUpcomingStudentExam(Long.valueOf(cursor.getInt(0)))){
+                    upcomingExams.add(Integer.parseInt(detail[0]));
+                }
+            }
+            catch (Exception e){
+                upcomingExams = new ArrayList<>();
+            }
+
+            Student student;
+
+            productRows.add( student = new Student(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    calculateAge(cursor.getString(3), currentDate),
+                    cursor.getString(4).charAt(0),
+                    getProgramEnrolment(cursor.getInt(0)).get(2),
+                    cursor.getString(5),
+                    upcomingExams,
+                    cursor.getString(6)
+                    )
+            );
+            cursor.moveToNext();
+        }
+
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        return productRows;
+    }
+
+    public String getStudentDOB(long sID) {
+
+        String dob = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = new String[] { DOB };
+        String[] selectionArgs = new String[] { String.valueOf(sID) };
+        Cursor cursor = db.query(STUDENT_INFO, columns, STUDENT_ID+"=?", selectionArgs, null, null, null);
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
+
+            dob = cursor.getString(0);
+
+            cursor.moveToNext();
+        }
+
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+
+        return dob;
+
+
+    }
+
+
+    private static int calculateAge(String birthDate, LocalDate currentDate){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate finalBirthDate;
+
+        finalBirthDate = LocalDate.parse(birthDate, formatter);
+
+        if ((finalBirthDate != null) && (currentDate != null)) {
+            return Period.between(finalBirthDate, currentDate).getYears();
+        } else {
+            return 0;
+        }
+    }
+
+
+    public void clearRecords (String tableName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(tableName, null, null);
+    }
+
 
     /* -------------------------------------------------------------------------------------------
 
@@ -378,19 +494,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
        -------------------------------------------------------------------------------------------*/
 
-    public void insertPrograms(String progName){
+    public void insertPrograms(long progID, String progName){
 
         String sql = "INSERT OR REPLACE INTO " + PROGRAMS + " ( " +
 
-                PROGRAM_NAME +
+                PROGRAM_ID      + "," +
+                PROGRAM_NAME    +
 
                 ")" +
-                "VALUES (?)";
+                "VALUES (?, ?)";
 
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement(sql);
 
-        stmt.bindString(1, progName);
+        stmt.bindLong(1, progID);
+        stmt.bindString(2, progName);
 
         stmt.executeInsert();
         stmt.clearBindings();
@@ -417,6 +535,42 @@ public class DatabaseManager extends SQLiteOpenHelper {
         stmt.clearBindings();
         db.close();
     }
+
+//    select student, program, programs.name
+//    from program_enrolment
+//    inner join programs on programs.id = program_enrolment.program
+//    where student = 0;
+
+    private ArrayList<String> getProgramEnrolment(long sID){
+        String[] columns = new String[] {PROGRAM}; // we can use null so that it returns everything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "select "+ STUDENT + ", " + PROGRAM + "," + PROGRAMS +"." + PROGRAM_NAME +
+                        " from " + PROGRAM_ENROLMENT +
+                        " inner join " + PROGRAMS + " on " + PROGRAMS+ "."+ PROGRAM_ID + " = " + PROGRAM_ENROLMENT+ "."+ PROGRAM +
+                        " where "+ STUDENT + "= ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(sID)});
+
+//        Cursor cursor = db.query(PROGRAM_ENROLMENT, columns, STUDENT+"=?", new String[] { String.valueOf(sID) }, null, null, null);
+
+        ArrayList<String> output = new ArrayList<String>();
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false){ // while cursor is not at the last entry
+            output.add(String.valueOf(cursor.getInt(0)));
+            output.add(String.valueOf(cursor.getInt(1)));
+            output.add(cursor.getString(2));
+            cursor.moveToNext();
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        Log.d("output size: ", String.valueOf(output.size()));
+
+        return output;
+    }
+
 
     /* -------------------------------------------------------------------------------------------
 
@@ -452,27 +606,103 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void insertExamAllocation(long studentID, long examID, long progID){
+    public void insertExamAllocation(long studentID, long examID){
 
-        String sql = "INSERT OR REPLACE INTO " + PROGRAM_ENROLMENT + " ( " +
+        String sql = "INSERT OR REPLACE INTO " + EXAM_ALLOCATION + " ( " +
 
                 STUDENT     + "," +
-                EXAM        + "," +
-                PROGRAM     +
+                EXAM        +
 
                 ")" +
-                "VALUES ( ?, ?, ?)";
+                "VALUES ( ?, ?)";
 
         SQLiteDatabase db = this.getWritableDatabase();
         SQLiteStatement stmt = db.compileStatement(sql);
 
         stmt.bindLong(1, studentID);
         stmt.bindLong(2, examID);
-        stmt.bindLong(3, progID);
 
         stmt.executeInsert();
         stmt.clearBindings();
         db.close();
+    }
+
+//    select exam.id exam.exam_name, exam.date, exam.start_time, exam.end_time
+//    from exam_allocation
+//    inner join exam on exam.id = exam_allocation.exam
+//    where student = 1;
+//select exam.id, exam.exam_name, exam.date, exam.time_start, exam.time_end from exam_allocation inner join exam on exam.id = exam_allocation.exam where student=1;
+    private ArrayList<String[]> getUpcomingStudentExam(long sID){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "select "+ EXAM + "." + EXAM_ID + "," + EXAM + "." + EXAM_NAME +"," + EXAM+ "." +EXAM_DATE + "," + EXAM+ "." +EXAM_START_TIME + ","+ EXAM+ "." +EXAM_END_TIME +
+                " from " + EXAM_ALLOCATION +
+                " inner join " + EXAM + " on " + EXAM+ "."+ EXAM_ID + " = " + EXAM_ALLOCATION+ "."+ EXAM +
+                " where "+ STUDENT + "= ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(sID)});
+
+        ArrayList<String[]> clean;
+        ArrayList<String[]> output = new ArrayList<String[]>();
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false){ // while cursor is not at the last entry
+            String[] temp = new String[] {
+                    String.valueOf(cursor.getInt(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+            };
+
+            output.add(temp);
+            cursor.moveToNext();
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+
+        Log.d("output size: ", String.valueOf(output.size()));
+
+        if (output.size() == 0){
+            clean = new ArrayList<String[]>();
+        }else{
+            clean = validateExams(output);
+        }
+
+
+        return clean;
+    }
+
+    private ArrayList<String[]> validateExams(ArrayList<String[]> upcomingExam){
+
+        LocalDate currentDate = LocalDate.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime currentTime = LocalTime.now();
+        String timeNow = formatter.format(currentTime);
+        timeNow = timeNow.substring(0, 2);
+
+        DateTimeFormatter dateFromatter = DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy");
+
+        ArrayList<String[]> clean = new ArrayList<>();
+
+        for(String[] detail: upcomingExam){
+            LocalDate examDate = LocalDate.parse(detail[2], dateFromatter);
+            if (examDate.isEqual(currentDate)){
+                String startTime = detail[3].substring(0, 2);
+                if (Integer.parseInt(startTime) >= Integer.parseInt(timeNow)){  // e.g., if exam starts at 8 and now is 6
+                    clean.add(detail);
+                }
+            }
+            else if (examDate.isAfter(currentDate)){  // e.g if currentDate is 6th and exam date is 7th
+                clean.add(detail);
+            }
+        }
+
+        return clean;
+
     }
 
     /* -------------------------------------------------------------------------------------------
@@ -507,6 +737,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+//    select exam.exam_name from exam inner join exam on exam.id = exam_allocation.exam where exam_allocation.student = 1;
+
+
+
     public void updateTODO(long id, ArrayList<String> keys, ArrayList<String> values){
 
         String cond = TextUtils.join(" = ?, ", keys);
@@ -527,6 +761,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             }
             stmt.bindLong(values.size()+1, id);
 
+            Log.d("statement to string: ", stmt.toString());
+
             stmt.executeUpdateDelete();
             stmt.clearBindings();
             db.close();
@@ -538,6 +774,25 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     }
+
+    public void deleteTask(long taskID){
+
+        try {
+            String sql = "DELETE FROM " + TODO + " WHERE " + TODO_ID + "= ?";
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.bindLong(1, taskID);
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+            db.close();
+
+        } catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+    }
+
 
     public ArrayList<Task> getAllTask(String doneFlag) {
 
@@ -583,36 +838,28 @@ public class DatabaseManager extends SQLiteOpenHelper {
     //    String[] selectionArgs = { someValue }; // matched to "?" in selection
     //    Cursor dbCursor = db.query(table, columnsToReturn, selection, selectionArgs, null, null, null);
 
-
-
-    public ArrayList<String> getAllStudents() {
-
+    public long printAutoIncrements(){
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<String> productRows = new ArrayList<String>();
 
-        String[] columns = new String[] {"StudentID", "FirstName", "LastName", "YearOfBirth", "Gender"};
-        Cursor cursor = db.query(STUDENT_INFO, columns, null, null, null, null, null);
+        String query = "SELECT seq FROM SQLITE_SEQUENCE LIMIT 1";
+        Cursor cursor = db.rawQuery(query, null);
+
+        long output = 0;
 
         cursor.moveToFirst();
-        while (cursor.isAfterLast() == false) {
-            productRows.add(Integer.toString(
-                    cursor.getInt(0)) + ", " +
-                    cursor.getString(1) + ", " +
-                    cursor.getString(2) + ", " +
-                    cursor.getString(3) + ", " +
-                    cursor.getString(4)
-            );
+        while (cursor.isAfterLast() == false){ // while cursor is not at the last entry
+            output = cursor.getLong(0);
             cursor.moveToNext();
         }
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();
         }
-        return productRows;
+
+        return output;
+
+
     }
 
-    public void clearRecords (String tableName) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(tableName, null, null);
-    }
+
 
 }

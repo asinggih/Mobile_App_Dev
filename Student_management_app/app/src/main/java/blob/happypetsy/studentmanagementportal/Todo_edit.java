@@ -1,10 +1,15 @@
 package blob.happypetsy.studentmanagementportal;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,15 +35,18 @@ import blob.happypetsy.studentmanagementportal.Wrappers.Task;
 
 public class Todo_edit extends AppCompatActivity {
 
+    Context context;
+
     Calendar calendar;
     int day, month, year;
 
+    TextInputLayout neil;
     EditText taskNameInput, taskLocationInput, taskDueInput;
     Spinner completeFlag;
     ImageButton deleteBut;
-    Button update;
+    Button update, closeWindow;
 
-    int taskID;
+    long taskID;
 
     DatabaseManager db;
 
@@ -45,12 +56,16 @@ public class Todo_edit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_todo_edit);
 
+        context = Todo_edit.this;
+
+        db = new DatabaseManager(Todo_edit.this);
+
         Intent intent = getIntent();
         final Task taskToEdit = (Task) intent.getSerializableExtra("Task_to_edit");
-        Log.d("shipped task: " , taskToEdit.toString());
 
-        taskID = taskToEdit.getTaskID();
+        taskID = new Long(taskToEdit.getTaskID());
 
+        neil = (TextInputLayout) findViewById(R.id.taskName_edit_input_layout);
         taskNameInput = (EditText) findViewById(R.id.taskName_edit_input);
         taskNameInput.setText(taskToEdit.getTaskName(), TextView.BufferType.EDITABLE);
 
@@ -101,6 +116,16 @@ public class Todo_edit extends AppCompatActivity {
             completeFlag.setSelection(1);
         }
 
+        closeWindow = (Button) findViewById(R.id.editTask_close_button);
+        closeWindow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Todo_edit.this, Todo.class);
+                startActivity(intent);
+            }
+        });
+
+
         update = (Button) findViewById(R.id.update_task_but);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,33 +135,99 @@ public class Todo_edit extends AppCompatActivity {
                 String taskDue = taskDueInput.getText().toString();
                 int taskComplete = completeFlag.getSelectedItemPosition();  // need to flip value later on
 
-                ArrayList<String> column = new ArrayList<String>();
-                ArrayList<String> values = new ArrayList<String>();
+                if (isValid(taskName)){
+                    ArrayList<String> column = new ArrayList<String>();
+                    ArrayList<String> values = new ArrayList<String>();
 
-                column.add("name");
-                values.add(taskName);
+                    column.add("name");
+                    values.add(taskName);
 
-                column.add("date");
-                values.add(taskDue);
+                    column.add("date");
+                    values.add(taskDue);
 
-                column.add("location");
-                values.add(taskLoc);
+                    column.add("location");
+                    values.add(taskLoc);
 
-                column.add("done");
-                if (taskComplete==1){
-                    values.add("0");
+                    column.add("done");
+                    if (taskComplete==1){
+                        values.add("0");
+                    }
+                    else{
+                        values.add("1");
+                    }
+
+                    Log.d("taskID: ", String.valueOf(taskID));
+                    Log.d("key: ", column.toString());
+                    Log.d("column: ", values.toString());
+
+                    db.updateTODO(taskID, column, values);
+
+                    Intent intent = new Intent(Todo_edit.this, Todo.class);
+                    startActivity(intent);
+
                 }
-                else{
-                    values.add("1");
-                }
-                
-                db.updateTODO(taskID, column, values);
-
-
 
             }
         });
 
+        deleteBut = (ImageButton) findViewById(R.id.task_to_trash);
+        deleteBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String taskName = taskNameInput.getText().toString();
+                alertBox(taskName);
+            }
+        });
+
+    }
+
+    private void alertBox(final String taskName){
+        // initialising new alert object
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+        alert.setTitle("Remove the task below ?");
+
+        alert
+                .setMessage(taskName)
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db.deleteTask(taskID);
+                        Intent intent = new Intent(Todo_edit.this, Todo.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alert.create();
+
+        // show it
+        alertDialog.show();
+
+        Button posBut = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negBut= alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        posBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        posBut.setTypeface(Typeface.DEFAULT_BOLD);
+
+        negBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        negBut.setTypeface(Typeface.DEFAULT_BOLD);
+    }
+
+    private boolean isValid(String taskName){
+
+        boolean flag = true;
+
+        if (taskNameInput.getText().toString().trim().equals("")){
+            neil.setError("Task name is required");
+            flag = false;
+        }
+        return flag;
 
     }
 

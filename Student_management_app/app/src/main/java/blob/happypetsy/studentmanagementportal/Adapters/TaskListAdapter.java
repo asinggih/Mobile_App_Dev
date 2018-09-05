@@ -3,11 +3,13 @@ package blob.happypetsy.studentmanagementportal.Adapters;
 
 import android.content.Context;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -27,6 +29,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
     private boolean checked = false;
     private boolean[] checkBoxFlag;
     Task toBeDeleted;
+    private View.OnClickListener onDelButtonClickListener;
 
     public TaskListAdapter(Context context, ArrayList<Task> entries){
         super(context, R.layout.content_todo, entries);
@@ -35,10 +38,12 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         checkBoxFlag = new boolean [entries.size()];
     }
 
+
     @Override
     public long getItemId(int position) {
         return position;
     }
+
 
     public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -74,17 +79,9 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         });
 
 
-        deleteBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toBeDeleted = entries.get(position);
-                Log.d("onClick: ", "hello");
-                Log.d("onClick: ", toBeDeleted.toString());
-                entries.remove(position);
-                notifyDataSetChanged();
 
-            }
-        });
+        deleteBut.setOnClickListener(this.onDelButtonClickListener);  // let the main view decide on the activity
+        deleteBut.setTag(position);                             // tagging this button click with the position of
 
         return entryItem;
 
@@ -96,6 +93,12 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 
     public Task taskToDeleted(){
         return toBeDeleted;
+    }
+
+//    https://stackoverflow.com/questions/8121476/how-to-setonclicklistener-on-the-button-inside-the-listview
+//    Solution posted by slott
+    public void setOnDelButtonClickListener(final View.OnClickListener onClickListener) {
+        this.onDelButtonClickListener = onClickListener;
     }
 
 

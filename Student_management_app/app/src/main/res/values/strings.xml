@@ -27,6 +27,26 @@ Vestibulum sed velit est. Donec rhoncus, est in cursus convallis, neque risus va
 Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus condimentum nunc purus id neque. Sed porta placerat iaculis. Etiam lacinia urna eleifend nulla interdum sollicitudin. Etiam nec tortor vulputate, facilisis mi egestas, tempus purus. In ligula libero, viverra in elit nec, fermentum tempor elit. Vivamus suscipit consequat leo, et auctor sapien venenatis sit amet. Pellentesque congue eleifend ex, vel aliquam magna rutrum quis. Donec mollis lobortis molestie. Phasellus ut lacinia dui, a varius metus. Vivamus pharetra felis mi, vitae pharetra elit sagittis eleifend. Ut bibendum justo erat, ac egestas nisi finibus in. Vestibulum a augue euismod, tincidunt diam in, placerat mi. Nam vitae mollis tellus. Praesent iaculis enim arcu, id dapibus nunc pharetra eu.
     </string>
 
+    <string name="new_student_rec_heading">Add New Student</string>
+    <string name="new_student_fn_hint">First name</string>
+    <string name="new_student_ln_hint">Last name</string>
+    <string name="new_student_dob_hint">Date of birth</string>
+    <string name="new_student_gender_hint">Gender</string>
+    <string name="new_student_address_hint">Address</string>
+    <string name="new_student_program_hint">Program</string>
+    <string name="new_student_image_hint">Add Photo</string>
+
+    <string name="edit_student_title">Edit Student Record</string>
+    <string name="edit_student_exam">Assign exams</string>
+
+
+    <string name="name_placeholder">Aditya Singgih</string>
+    <string name="sID_placeholder">16668906</string>
+    <string name="program_placeholder">Master of ICT</string>
+
+    <string name="update_button">Update</string>
+    <string name="student_id_label">Student ID: </string>
+    <string name="delete_student_label">Delete Student</string>
 
     <!--
 
@@ -68,6 +88,8 @@ Quisque convallis, nisi at rutrum dictum, lorem nisi maximus sapien, luctus cond
     <string name="cancel_label">Cancel</string>
     <string name="submit_label">Submit</string>
     <string name="title_activity_todo_edit">todo_edit</string>
+    <string name="title_activity_add_new_student">Add_new_student</string>
+    <string name="title_activity_sturec_edit">Sturec_edit</string>
 
 
 </resources>

@@ -7,7 +7,7 @@
     android:descendantFocusability="beforeDescendants"
     android:background="@color/colorRealWhite"
     tools:showIn="@layout/activity_todo_edit"
-    tools:context=".todo_edit"
+    tools:context=".Todo_edit"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -18,7 +18,7 @@
         android:gravity="right" >
 
         <Button
-            android:id="@+id/newExam_close_button"
+            android:id="@+id/editTask_close_button"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginBottom="10dp"
@@ -166,6 +166,7 @@
                         android:orientation="vertical">
 
                         <ImageButton
+                            android:id="@+id/task_to_trash"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginRight="20dp"

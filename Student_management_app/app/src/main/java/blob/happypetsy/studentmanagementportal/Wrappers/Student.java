@@ -1,19 +1,21 @@
 package blob.happypetsy.studentmanagementportal.Wrappers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Student {
+public class Student implements Serializable {
 
     private int studentID, age;
-    private String firstName, lastName, course, address;
+    private String firstName, lastName, course, address, imgPath;
     private ArrayList<Integer> upcomingExams; // ArrayList of examIDs
     private char gender;
 
     public Student (){
+        this.upcomingExams = new ArrayList<Integer>();
     }
 
-    public Student (int sID, String fName, String lName, int age, char gender, String course, String address, ArrayList<Integer> upcomingExams) {
+    public Student (int sID, String fName, String lName, int age, char gender, String course, String address, ArrayList<Integer> upcomingExams, String imgPath) {
         this.studentID = sID;
         this.firstName = fName;
         this.lastName = lName;
@@ -22,6 +24,7 @@ public class Student {
         this.course = course;
         this.address = address;
         this.upcomingExams = upcomingExams;
+        this.imgPath = imgPath;
     }
 
     // Setters
@@ -49,10 +52,11 @@ public class Student {
         this.course = course;
     }
 
-
     public void setUpcomingExams(int examID) {
         this.upcomingExams.add(examID);
     }
+
+    public void setImgPath(String imgPath) {this.imgPath = imgPath; }
 
 
     // Getters
@@ -84,6 +88,9 @@ public class Student {
 
     public ArrayList<Integer> getUpcomingExams() { return upcomingExams; }
 
+    public String getImgPath() { return imgPath; }
+
+
     @Override
     public String toString() {
         String[] out = new String[] {
@@ -94,7 +101,8 @@ public class Student {
                 String.valueOf(gender),
                 course,
                 address,
-                upcomingExams.toString()
+                upcomingExams.toString(),
+                imgPath
         };
         return Arrays.toString(out);
     }

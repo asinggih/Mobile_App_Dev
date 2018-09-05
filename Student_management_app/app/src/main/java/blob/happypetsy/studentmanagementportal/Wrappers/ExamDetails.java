@@ -3,9 +3,10 @@
 package blob.happypetsy.studentmanagementportal.Wrappers;
 
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class ExamDetails {
+public class ExamDetails implements Serializable {
 
     private String name, location, startTime;
     private Calendar date;

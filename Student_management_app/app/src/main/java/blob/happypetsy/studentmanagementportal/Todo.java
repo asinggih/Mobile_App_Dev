@@ -81,6 +81,14 @@ public class Todo extends AppCompatActivity {
         completedTasks = db.getAllTask("1");
         completedTaskList = (ListView) findViewById(R.id.completed_list);
 
+        if (tasksEntries.size()==0 && completedTasks.size() > 0){
+            incompleteCard.setVisibility(View.GONE);
+            completedTaskList.setVisibility(View.VISIBLE);
+        }
+        else if (tasksEntries.size() > 0 && completedTasks.size() == 0){
+            incompleteCard.setVisibility(View.VISIBLE);
+            completedTaskList.setVisibility(View.GONE);
+        }
 
         newTaskContainer = (RelativeLayout) findViewById(R.id.new_task_container);
         newTaskCard = (CardView) findViewById(R.id.new_task_card);
@@ -163,19 +171,35 @@ public class Todo extends AppCompatActivity {
 
 //        checkFlag = new boolean[tasksEntries.size()];
         tla = new TaskListAdapter(Todo.this, tasksEntries);
+        tla.setOnDelButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+                Task toBeDeleted= (Task) taskList.getAdapter().getItem(position);
+
+                db.deleteTask(toBeDeleted.getTaskID());
+
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+
+        });
+
+
         taskList.setAdapter(tla);
 
         taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Task toBeEdited= (Task) taskList.getAdapter().getItem(position);
-                Log.d("to be edited", toBeEdited.toString());
                 Intent intent = new Intent(Todo.this, Todo_edit.class);
                 intent.putExtra("Task_to_edit", toBeEdited);    // send variable to another activity
                 startActivity(intent);
 
             }
         });
+
 
 
         /* -----------------------------------------------------------------------------------------
@@ -185,6 +209,21 @@ public class Todo extends AppCompatActivity {
          ----------------------------------------------------------------------------------------- */
 
         cla = new TaskListAdapter(Todo.this, completedTasks);
+        cla.setOnDelButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (int) view.getTag();
+                Task toBeDeleted= (Task) taskList.getAdapter().getItem(position);
+
+                db.deleteTask(toBeDeleted.getTaskID());
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+
+        });
+
+
         completedTaskList.setAdapter(cla);
 
         completedTaskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

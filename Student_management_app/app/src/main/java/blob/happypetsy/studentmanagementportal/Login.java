@@ -37,13 +37,37 @@ public class Login extends AppCompatActivity {
         exams.add(3);
 
         db = new DatabaseManager(this);
+
+        // HardCoded initial values;
+        db.insertPrograms(0, "Master of ICT");
+        db.insertPrograms(1, "Master of Business Administration");
+        db.insertPrograms(2, "Master of Data Science");
+        db.insertPrograms(3, "Bachelor of Arts");
+        db.insertPrograms(4, "Bachelor of Science");
+
+        // TESTING PURPOSES
+//        db.insertStudent("Aditya", "Singgih", "12/01/1990", "M", "74 Epping Road, Lane Cove", "");
+//        db.insertStudent("ss", "fff", "12/01/1990", "M", "74 Epping Road, Lane Cove", "");
+
+//        db.insertProgEnrolment(2, 1);
+//
+//        db.insertExam("test exam", "Thursday, 06/09/2018", "10:00", "13:00", "blob");
+//        db.insertExam("t2 blob", "Wednesday, 05/09/2018", "10:00", "13:00", "aaa");
+//        db.insertExamAllocation(1, 1);
+//        db.insertExamAllocation(1, 2);
+
+        Log.d("autoinc value: ", String.valueOf(db.printAutoIncrements()));
+        // end
+
+        for(Student student: db.getAllStudents()){
+            Log.d("ooo", student.toString());
+        }
 //        db.insertExam("Soft Con", "06-09-2018", "10:00", "12:00", "4.03 SCC");
 
         // hardcode user of this app for demo purposes
         // Create new user is not provided since everyone can them do as they please with the records!!
 //        db.insertUser(1,"Bob", "DROP TABLE", "Admin", "supersimple");
 //
-//        db.insertStudent("Aditya", "Singgih", "1990/01/12", "M", "74 Epping Road, Lane Cove", "");
 //        db.insertStudent("Bolb", "ffff", "1990/01/12", "M", "71 ECove", "");
 
         ArrayList<String> keys = new ArrayList<String>();

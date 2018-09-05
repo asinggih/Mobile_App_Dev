@@ -21,8 +21,8 @@
         </activity>
         <activity
             android:name=".Todo"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".Exam"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -36,8 +36,15 @@
         <activity
             android:name=".Todo_edit"
             android:label="@string/title_activity_todo_edit"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Add_new_student"
+            android:label="@string/title_activity_add_new_student"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Sturec_edit"
+            android:label="@string/title_activity_sturec_edit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
