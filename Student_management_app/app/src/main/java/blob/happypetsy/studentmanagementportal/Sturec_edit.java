@@ -2,11 +2,14 @@ package blob.happypetsy.studentmanagementportal;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -41,6 +44,8 @@ public class Sturec_edit extends AppCompatActivity {
     int day, month, year;
 
     DatabaseManager db;
+
+    long sID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +149,7 @@ public class Sturec_edit extends AppCompatActivity {
                             Variables Assignment With Current Student Object
 
          ------------------------------------------------------------------------------------------ */
+        sID = Long.valueOf(studentToEdit.getStudentID());
 
         delStudent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,11 +157,14 @@ public class Sturec_edit extends AppCompatActivity {
 
                 ArrayList<String> students = new ArrayList<>();
                 students.add(String.valueOf(studentToEdit.getStudentID()));
+                String studentFullName = studentToEdit.getFirstName() +" "+ studentToEdit.getLastName();
 
-                db.deleteStudent(students);
 
-                Intent intent = new Intent(context, Sturec.class);
-                startActivity(intent);
+                alertBox(studentFullName, students);
+//                db.deleteStudent(students);
+//
+//                Intent intent = new Intent(context, Sturec.class);
+//                startActivity(intent);
 
             }
         });
@@ -329,5 +338,44 @@ public class Sturec_edit extends AppCompatActivity {
 
         return id;
 
+    }
+
+    private void alertBox(final String studentName, final ArrayList<String> studentIDlist){
+        // initialising new alert object
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+
+        alert.setTitle("Remove the student below ?");
+
+        alert
+                .setMessage(studentName)
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db.deleteStudent(studentIDlist);
+                        Intent intent = new Intent(context, Sturec.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alert.create();
+
+        // show it
+        alertDialog.show();
+
+        Button posBut = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negBut= alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        posBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        posBut.setTypeface(Typeface.DEFAULT_BOLD);
+
+        negBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        negBut.setTypeface(Typeface.DEFAULT_BOLD);
     }
 }

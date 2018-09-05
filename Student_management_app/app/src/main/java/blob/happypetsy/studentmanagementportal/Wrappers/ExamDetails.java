@@ -8,17 +8,19 @@ import java.util.Calendar;
 
 public class ExamDetails implements Serializable {
 
-    private String name, location, startTime;
-    private Calendar date;
-    private int duration;
+    private String name, location, startTime, date;
+    private int duration, id;
 
-    public ExamDetails(String name, String location, Calendar date, String startTime, int duration){
+    public ExamDetails(int id, String name, String location, String date, String startTime, int duration){
+        this.id = id;
         this.name = name;
         this.location = location;
         this.date = date;
         this.startTime = startTime;
         this.duration = duration;
     }
+
+    public int getId() {return this.id;}
 
     public String getName(){
         return this.name;
@@ -28,7 +30,7 @@ public class ExamDetails implements Serializable {
         return this.location;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return this.date;
     }
 

@@ -6,7 +6,7 @@
 
 
     <ListView
-        android:id="@+id/exam_list"
+        android:id="@+id/upcoming_exam_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

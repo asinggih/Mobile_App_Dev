@@ -1,10 +1,13 @@
 package blob.happypetsy.studentmanagementportal;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -117,12 +120,9 @@ public class Sturec extends AppCompatActivity {
 
                 }
 
-                db.deleteStudent(goneList);
+                alertBox(goneList);
 
 
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
 
             }
         });
@@ -152,5 +152,46 @@ public class Sturec extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void alertBox(final ArrayList<String> studentIDlist){
+        // initialising new alert object
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+        alert.setTitle("You are removing");
+        String message = String.valueOf(studentIDlist.size()) + " Student(s)";
+
+        alert
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db.deleteStudent(studentIDlist);
+
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alert.create();
+
+        // show it
+        alertDialog.show();
+
+        Button posBut = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negBut= alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        posBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        posBut.setTypeface(Typeface.DEFAULT_BOLD);
+
+        negBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        negBut.setTypeface(Typeface.DEFAULT_BOLD);
     }
 }

@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.database.sqlite.SQLiteStatement;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +25,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import blob.happypetsy.studentmanagementportal.Exam;
+import blob.happypetsy.studentmanagementportal.Wrappers.ExamDetails;
 import blob.happypetsy.studentmanagementportal.Wrappers.Student;
 import blob.happypetsy.studentmanagementportal.Wrappers.Task;
 
@@ -627,6 +630,110 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public ArrayList<ExamDetails> getAllExams(){
+        ArrayList<ExamDetails> output = new ArrayList<ExamDetails>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(EXAM, null, null,null, null, null, null);
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
+
+            ExamDetails exam = new ExamDetails(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(5),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    getDuration(cursor.getString(4), cursor.getString(3))
+            );
+
+            output.add(exam);
+
+            cursor.moveToNext();
+        }
+
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+
+        return output;
+    }
+
+    public ArrayList<ExamDetails> getUpcomingExams(){
+
+        ArrayList<ExamDetails> output = new ArrayList<ExamDetails>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(EXAM, null, null,null, null, null, null);
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() == false) {
+
+            LocalDate currentDate = LocalDate.now();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime currentTime = LocalTime.now();
+            String timeNow = formatter.format(currentTime);
+            timeNow = timeNow.substring(0, 2);
+            DateTimeFormatter dateFromatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+            LocalDate examDate = LocalDate.parse(cursor.getString(2), dateFromatter);
+            if (examDate.isEqual(currentDate)){
+                String startTime = cursor.getString(3).substring(0, 2);
+                if (Integer.parseInt(startTime) >= Integer.parseInt(timeNow)){  // e.g., if exam starts at 8 and now is 6
+                    ExamDetails exam = new ExamDetails(
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(5),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            getDuration(cursor.getString(4), cursor.getString(3))
+                    );
+
+                    output.add(exam);
+
+
+                }
+            }
+            else if (examDate.isAfter(currentDate)){  // e.g if currentDate is 6th and exam date is 7th
+                ExamDetails exam = new ExamDetails(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(5),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        getDuration(cursor.getString(4), cursor.getString(3))
+                        );
+
+                output.add(exam);
+            }
+
+            cursor.moveToNext();
+        }
+
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+
+        return output;
+
+    }
+    private int getDuration(String startTime, String endTime){
+
+        String[] startParts = startTime.split(":");
+        String[] endParts = endTime.split(":");
+
+        int start = Integer.parseInt(startParts[0]);
+        int end = Integer.parseInt(endParts[0]);
+
+        int out =end-start;
+
+        return out;
+
+    }
 //    select exam.id exam.exam_name, exam.date, exam.start_time, exam.end_time
 //    from exam_allocation
 //    inner join exam on exam.id = exam_allocation.exam

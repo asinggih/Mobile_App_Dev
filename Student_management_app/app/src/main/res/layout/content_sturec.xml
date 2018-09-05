@@ -87,20 +87,8 @@
         android:layout_marginEnd="18dp"
         android:elevation="20dp"
         android:visibility="visible"
-        app:srcCompat="@drawable/tick" />
+        app:srcCompat="@drawable/trash" />
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/cancel_action"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:layout_marginBottom="84dp"-->
-        <!--android:layout_marginStart="21dp"-->
-        <!--android:elevation="20dp"-->
-        <!--android:visibility="gone"-->
-        <!--app:srcCompat="@drawable/cancel" />-->
 
     <RelativeLayout
         android:id="@+id/navigation_container"
