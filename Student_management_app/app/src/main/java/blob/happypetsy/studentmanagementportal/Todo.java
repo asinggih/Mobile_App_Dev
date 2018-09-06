@@ -1,11 +1,15 @@
 package blob.happypetsy.studentmanagementportal;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -35,7 +39,9 @@ import blob.happypetsy.studentmanagementportal.Wrappers.*;
 
 public class Todo extends AppCompatActivity {
 
+    Context context;
     Button newTaskBut;
+    ImageButton newListBut;
     RelativeLayout newTaskContainer;
     CardView newTaskCard, completedCard, incompleteCard;
     TextView cancelLink, addLink, toggleCompleted;
@@ -63,6 +69,10 @@ public class Todo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_todo);
+        context = Todo.this;
+
+
+        db = new DatabaseManager(Todo.this);
 
         /* -----------------------------------------------------------------------------------------
 
@@ -70,7 +80,13 @@ public class Todo extends AppCompatActivity {
 
          ----------------------------------------------------------------------------------------- */
 
-        db = new DatabaseManager(Todo.this);
+        newListBut = (ImageButton) findViewById(R.id.clear_icon);
+        newListBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertBox();
+            }
+        });
 
         incompleteCard = (CardView) findViewById(R.id.task_list_card);
         completedCard = (CardView) findViewById(R.id.completed_task_list);
@@ -370,5 +386,44 @@ public class Todo extends AppCompatActivity {
 
         return flag;
 
+    }
+
+    private void alertBox(){
+        // initialising new alert object
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+
+        alert.setTitle("New Todo List Creation");
+
+        alert
+                .setMessage("Are you sure you want to clear the CURRENT list for a new one?")
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db.clearTaskList();
+                        Intent intent = new Intent(context, Todo.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alert.create();
+
+        // show it
+        alertDialog.show();
+
+        Button posBut = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negBut= alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        posBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        posBut.setTypeface(Typeface.DEFAULT_BOLD);
+
+        negBut.setTextColor(getResources().getColor(R.color.colorAccentDark, null));
+        negBut.setTypeface(Typeface.DEFAULT_BOLD);
     }
 }

@@ -539,6 +539,42 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateProgEnrolment(long sID, long progID){
+
+        String cond = "program";
+
+        try {
+
+            String sql = "UPDATE " + PROGRAM_ENROLMENT + " SET " +
+                    cond + " = ? " + "WHERE " +
+                    STUDENT + " = ?";
+
+//            Log.d("updateTODO: ", sql);
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.bindLong(1, progID);
+            stmt.bindLong(2, sID);
+
+//            for (int i=0; i < values.size() ; i++){
+//                stmt.bindString(i+1, values.get(i));
+//            }
+//            stmt.bindLong(values.size()+1, id);
+//
+//            Log.d("statement to string: ", stmt.toString());
+
+            stmt.executeUpdateDelete();
+            stmt.clearBindings();
+            db.close();
+
+        }
+        catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+
+    }
+
 //    select student, program, programs.name
 //    from program_enrolment
 //    inner join programs on programs.id = program_enrolment.program
@@ -896,6 +932,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
             db.close();
 
         } catch (SQLException e) {
+            Log.w("Exception:", e);
+        }
+    }
+
+    public void clearTaskList(){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            String sql = "DELETE FROM " + TODO;
+            SQLiteStatement stmt = db.compileStatement(sql);
+
+            stmt.executeUpdateDelete();
+            db.close();
+
+        }
+        catch (SQLException e){
             Log.w("Exception:", e);
         }
     }

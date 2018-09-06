@@ -193,7 +193,7 @@ public class Sturec_edit extends AppCompatActivity {
                     String gender = String.valueOf(genderDropdown.getSelectedItem()).substring(0,1);
 
                     String selectedProgram = String.valueOf(programDropdown.getSelectedItem());
-                    int programID = getProgramID(selectedProgram.trim());
+                    long programID = getProgramID(selectedProgram.trim());
 
                     ArrayList<String> keys = new ArrayList<String>();
                     keys.add("first_name");
@@ -211,7 +211,7 @@ public class Sturec_edit extends AppCompatActivity {
                     values.add(addr);
 
                     db.updateStudentInfo(sID, keys, values);
-
+                    db.updateProgEnrolment(sID, programID);
 
 //                    db.insertStudent(
 //                            fname,
@@ -316,9 +316,9 @@ public class Sturec_edit extends AppCompatActivity {
         return flag;
     }
 
-    private int getProgramID(String programName){
+    private long getProgramID(String programName){
 
-        int id;
+        long id;
 
         if (programName.equals("Master of ICT")){
             id = 0;

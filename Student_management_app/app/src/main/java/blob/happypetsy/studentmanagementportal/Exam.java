@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import blob.happypetsy.studentmanagementportal.Adapters.CustomPageAdapter;
+
 public class Exam extends AppCompatActivity {
 
     Button newExamBut;
