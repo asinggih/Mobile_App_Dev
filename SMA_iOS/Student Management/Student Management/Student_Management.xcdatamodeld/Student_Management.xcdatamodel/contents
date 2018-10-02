@@ -14,6 +14,7 @@
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dob" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,8 +22,8 @@
         <relationship name="programs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Program" inverseName="programs" inverseEntity="Program" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Student" positionX="153" positionY="-102" width="128" height="133"/>
         <element name="Exam" positionX="-36" positionY="128" width="128" height="133"/>
         <element name="Program" positionX="340" positionY="135" width="128" height="73"/>
+        <element name="Student" positionX="153" positionY="-102" width="128" height="148"/>
     </elements>
 </model>

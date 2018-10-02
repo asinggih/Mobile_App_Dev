@@ -10,30 +10,46 @@ import UIKit
 
 class newStudentVC: UIViewController {
 
-    @IBOutlet weak var dob: UITextField!
+    @IBOutlet weak var requiredWarning: UILabel!
+    
+    @IBOutlet weak var firstNameInput: UITextField!
+    @IBOutlet weak var lastNameInput: UITextField!
+    @IBOutlet weak var dobInput: UITextField!
+    @IBOutlet weak var addressInput: UITextField!
+    
     @IBOutlet weak var genderSelection: UITextField!
     @IBOutlet weak var programSelection: UITextField!
-    @IBOutlet weak var requiredWarning: UILabel!
+    
     
     var datePicker: UIDatePicker = UIDatePicker()
     var genderPicker: UIPickerView = UIPickerView()     // tag = 1
     var programPicker: UIPickerView = UIPickerView()    // tag = 2
     
-    var programList:[String] = []
+    var programList:[Program] = []
     var genderList:[String] = []
     
     var dateFormatter = DateFormatter()
     
-//    override var preferredStatusBarStyle : UIStatusBarStyle {
-//        return UIStatusBarStyle.lightContent
-//    }
+    
+    var dateStorage = Date()            // to hold proper date format for core data storage
+    var programStorage = Program()
+    
+    var fn:String!
+    var ln:String!
+    var gender:String!
+    var address:String!
+    var prog:String!
+    var dob:String!
+    
+    var alert:UIAlertController!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        
         requiredWarning.isHidden = true
+
         
         // Make the date format pretty for input
         dateFormatter.dateStyle = .medium
@@ -50,13 +66,7 @@ class newStudentVC: UIViewController {
         
         
         genderList = ["Male", "Female", "Other"]
-        
-        programList = ["Master of ICT",
-                        "Master of Data Science",
-                        "Bachelor of Arts",
-                        "Bachelor of Engineering",
-                        "Bachelor of Science"]
-        
+        programList = getProgramList()
         
         
         genderPicker.tag = 1
@@ -68,9 +78,8 @@ class newStudentVC: UIViewController {
         programPicker.delegate = self
         
         
-        
         // trigger respective picker views
-        dob.inputView = datePicker
+        dobInput.inputView = datePicker
         genderSelection.inputView = genderPicker
         programSelection.inputView = programPicker
         
@@ -86,18 +95,126 @@ class newStudentVC: UIViewController {
                 Snippets are from Apoorv Mote
      --------------------------------------------------------*/
     @objc func datePickerChanged(_ sender: UIDatePicker){
-        dob.text = dateFormatter.string(from: sender.date)
+        dateStorage = sender.date
+        dobInput.text = dateFormatter.string(from: sender.date)
+        print(dateStorage)
     }
     
     // dismisses any editing when touched somewhere else
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    // ------------------- end snippet---------------------------
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func submitButton(_ sender: Any) {
+       
+        fn = firstNameInput.text?.strip()
+        ln = lastNameInput.text?.strip()
+        address = addressInput.text?.strip()
+        gender = genderSelection.text?.strip()
+        dob = dobInput.text?.strip()
+        prog = programSelection.text?.strip()
+        
+        if isValid(){
+            processData(fn, ln, gender, dateStorage, address, programStorage)
+            
+            let confirmationMes = "\(fn!) \(ln!)"
+            // creating UI alert
+            alert = UIAlertController(title: "Successfully added", message: confirmationMes, preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:{ (action) -> Void in self.clearForm() }))
+
+            self.present(alert, animated: true, completion: nil)
+        
+        }
+        
+    }
+    
+    private func clearForm() {
+        firstNameInput.text = ""
+        lastNameInput.text = ""
+        addressInput.text = ""
+        genderSelection.text = ""
+        dobInput.text = ""
+        programSelection.text = ""
+    }
+    
+    private func isValid() -> Bool{
+        
+        if fn.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if ln.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if address.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if gender.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if prog.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if dob.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        return true
+
+    }
+    private func processData(_ firstName: String,
+                                 _ lastName: String,
+                                 _ gender: String,
+                                 _ dob: Date,
+                                 _ address: String,
+                                 _ program: Program) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+        let student = Student(context: context)
+        
+        student.firstName = firstName
+        student.lastName = lastName
+        student.address = address
+        student.programs = programStorage
+        student.gender = gender
+        student.dob = dob
+        
+        appDelegate.saveContext()
+    
+    }
+    
+    private func getProgramList() -> [Program]{
+        
+        var list:[Program] = []
+        do{
+            list = try context.fetch(Program.fetchRequest())
+        }
+        catch{
+            print("Fetching Error")
+        }
+        
+        return list
+    }
 }
+
 
 extension newStudentVC: UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -105,7 +222,7 @@ extension newStudentVC: UIPickerViewDelegate{
             return genderList[row]
         }
         else{
-            return programList[row]
+            return programList[row].name
         }
     }
     
@@ -130,7 +247,8 @@ extension newStudentVC: UIPickerViewDataSource{
             genderSelection.text = genderList[row]
         }
         else{
-            programSelection.text = programList[row]
+            programStorage = programList[row]
+            programSelection.text = programList[row].name
         }
     }
     

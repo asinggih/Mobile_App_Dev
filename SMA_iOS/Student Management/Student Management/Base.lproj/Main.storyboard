@@ -53,7 +53,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="101" id="1Oa-kj-4ym">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" rowHeight="101" id="1Oa-kj-4ym" customClass="StudentCell" customModule="Student_Management" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Oa-kj-4ym" id="r8C-GX-aNC">
@@ -88,6 +88,10 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="sID" destination="uUl-oQ-X61" id="9ox-sZ-mlG"/>
+                                            <outlet property="sName" destination="0kp-Qn-rty" id="Nr6-he-rlh"/>
+                                            <outlet property="sPic" destination="r33-dc-NSo" id="GuP-uD-eoM"/>
+                                            <outlet property="sProgram" destination="aRN-Wq-b9x" id="Woc-OL-3Vc"/>
                                             <segue destination="Zsq-FD-ltQ" kind="show" id="lfx-Vt-Frl"/>
                                         </connections>
                                     </tableViewCell>
@@ -125,6 +129,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.1762384176" green="0.21179398890000001" blue="0.29022714500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitButton:" destination="Rkp-YG-7Xy" eventType="touchUpInside" id="bKJ-Pp-0el"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*All fields are required" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjE-Xh-cXD">
                                 <rect key="frame" x="234" y="77" width="125" height="21"/>
@@ -193,7 +200,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="Zsq-FD-ltQ" kind="show" id="8Nd-z6-O7v"/>
+                                    <segue destination="tOO-nZ-Dty" kind="show" id="DZF-q7-mO2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -213,8 +220,11 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="dob" destination="pA3-Pa-YNy" id="Kfi-Rv-SHl"/>
+                        <outlet property="addressInput" destination="clV-sM-Tzt" id="xmE-Fd-3ui"/>
+                        <outlet property="dobInput" destination="pA3-Pa-YNy" id="Kfi-Rv-SHl"/>
+                        <outlet property="firstNameInput" destination="ccV-Rb-YiV" id="wp0-nB-590"/>
                         <outlet property="genderSelection" destination="dY2-3W-f2c" id="2ZL-FA-IUM"/>
+                        <outlet property="lastNameInput" destination="KHA-Rb-x6O" id="Ukm-SU-J19"/>
                         <outlet property="programSelection" destination="aeR-aF-z8D" id="qRH-BJ-vR5"/>
                         <outlet property="requiredWarning" destination="rjE-Xh-cXD" id="kgz-mZ-wV2"/>
                     </connections>
@@ -237,48 +247,41 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-RH-WQf">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*required fields" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSi-hq-hwW">
-                                                <rect key="frame" x="210" y="16" width="157" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxu-1N-X9N">
-                                                <rect key="frame" x="8" y="48" width="85" height="88"/>
+                                                <rect key="frame" x="17" y="48" width="85" height="88"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.57253886009999999" green="0.57121638200000002" blue="0.55103554529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="J9A-rW-Kb3">
-                                                <rect key="frame" x="108" y="77" width="259" height="30"/>
+                                                <rect key="frame" x="117" y="77" width="243" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="given-name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Aax-Li-jrx">
-                                                <rect key="frame" x="108" y="115" width="259" height="30"/>
+                                                <rect key="frame" x="117" y="115" width="243" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="family-name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Woi-sq-hIZ">
-                                                <rect key="frame" x="108" y="158" width="149" height="30"/>
+                                                <rect key="frame" x="117" y="158" width="149" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Program" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="psA-4g-FnX">
-                                                <rect key="frame" x="8" y="367" width="359" height="30"/>
+                                                <rect key="frame" x="17" y="367" width="343" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VN2-qf-9w7">
-                                                <rect key="frame" x="17" y="133" width="66" height="30"/>
+                                                <rect key="frame" x="26" y="133" width="66" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="edit">
@@ -286,21 +289,21 @@
                                                 </state>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bj2-KZ-Nc1">
-                                                <rect key="frame" x="8" y="233" width="359" height="30"/>
+                                                <rect key="frame" x="17" y="233" width="343" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4fN-YW-k0s">
-                                                <rect key="frame" x="8" y="279" width="359" height="30"/>
+                                                <rect key="frame" x="17" y="279" width="343" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Student ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hay-b4-ckq">
-                                                <rect key="frame" x="108" y="48" width="91" height="21"/>
+                                                <rect key="frame" x="117" y="48" width="91" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -314,27 +317,27 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOi-I8-dme">
-                                                <rect key="frame" x="332" y="433" width="35" height="32"/>
+                                                <rect key="frame" x="325" y="467" width="35" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button" image="plus"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exam List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mH-QN-Z4A">
-                                                <rect key="frame" x="8" y="439" width="111" height="21"/>
+                                                <rect key="frame" x="17" y="473" width="111" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YOe-k2-4Bo">
-                                                <rect key="frame" x="8" y="468" width="359" height="228"/>
+                                                <rect key="frame" x="8" y="502" width="352" height="228"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="66" id="6Ig-DD-e4v">
-                                                        <rect key="frame" x="0.0" y="28" width="359" height="66"/>
+                                                        <rect key="frame" x="0.0" y="28" width="352" height="66"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ig-DD-e4v" id="pUa-fj-JOE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="65.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="352" height="65.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Structures and Algo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lD-N1-EfP">
@@ -352,7 +355,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qau-hL-ngj">
-                                                                    <rect key="frame" x="313" y="11" width="46" height="30"/>
+                                                                    <rect key="frame" x="306" y="11" width="46" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <state key="normal" title="delete">
                                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -364,13 +367,20 @@
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msm-mQ-BGa">
-                                                <rect key="frame" x="113" y="771" width="138" height="30"/>
+                                                <rect key="frame" x="113" y="805" width="138" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="1" green="0.35529941320419312" blue="0.32138288021087646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Delete Student">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*required fields" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSi-hq-hwW">
+                                                <rect key="frame" x="203" y="19" width="157" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -396,7 +406,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oF8-3a-KfW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Student" id="6JF-ww-Tuv"/>
+                    <navigationItem key="navigationItem" title="Edit Student" id="6JF-ww-Tuv">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="rmX-CT-R76">
+                            <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="addressInput" destination="4fN-YW-k0s" id="5DN-9G-gjK"/>
@@ -405,12 +419,14 @@
                         <outlet property="genderSelection" destination="Woi-sq-hIZ" id="dFc-aq-x6s"/>
                         <outlet property="lastNameInput" destination="Aax-Li-jrx" id="8gV-Yd-kfM"/>
                         <outlet property="programSelection" destination="psA-4g-FnX" id="izO-FO-KeM"/>
+                        <outlet property="requiredWarning" destination="WSi-hq-hwW" id="sxn-xg-CmA"/>
+                        <outlet property="scrollView" destination="hHI-6f-Gvt" id="b8x-Y4-aZL"/>
                         <outlet property="studentID" destination="YMg-BD-XpM" id="Srf-qP-snk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ae5-7t-gFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="29.685157421289357"/>
+            <point key="canvasLocation" x="2020" y="28"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q5n-eB-RwL">
@@ -476,6 +492,6 @@
         <image name="student" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Nd-z6-O7v"/>
+        <segue reference="PWR-o7-HZv"/>
     </inferredMetricsTieBreakers>
 </document>
