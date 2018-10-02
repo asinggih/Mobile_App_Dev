@@ -22,8 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.titleTextAttributes =  [NSAttributedStringKey.foregroundColor:UIColor.white]
         
+        navigationBarAppearance.tintColor = uicolorFromHex(0x33CC66)
+//        navigationBarAppearance.barTintColor = uicolorFromHex(0x33CC66)
+        
         
         return true
+    }
+    
+    private func uicolorFromHex(_ rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

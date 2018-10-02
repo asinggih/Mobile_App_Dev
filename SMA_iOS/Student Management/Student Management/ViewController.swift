@@ -21,10 +21,11 @@ public class StudentCell: UITableViewCell {
 
 class ViewController: UIViewController {
     
-    var item:[String]=[]
-    
     var programs:[Program] = []
     var studentList:[Student] = []
+    
+    @IBOutlet weak var studentsTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +49,19 @@ class ViewController: UIViewController {
 //        }
 //
 //        appDelegate.saveContext()
-        
+//        
         do{
             studentList = try context.fetch(Student.fetchRequest())
         }
         catch{
             studentList = []
         }
+        
+        studentsTableView.delegate = self
+        studentsTableView.dataSource = self
+        
+        
+        print(programs)
         
     }
 
@@ -69,6 +76,8 @@ extension ViewController: UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+
 }
 
 extension ViewController: UITableViewDataSource{
@@ -80,12 +89,13 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // init the cell
-        let studentCell = tableView.dequeueReusableCell(withIdentifier: "studentCell") as! StudentCell
+        let studentCell = tableView.dequeueReusableCell(withIdentifier: "studentCell", for: indexPath) as! StudentCell
         
         let student = studentList[indexPath.row]
         
         studentCell.sName.text = "\(student.firstName!) \(student.lastName!)"
-//        studentCell.sID.text =
+        studentCell.sID.text = "1234"
+        studentCell.sProgram.text = student.programs?.name
         return studentCell
     }
 

@@ -112,7 +112,7 @@ class newStudentVC: UIViewController {
     }
     
     @IBAction func submitButton(_ sender: Any) {
-       
+    
         fn = firstNameInput.text?.strip()
         ln = lastNameInput.text?.strip()
         address = addressInput.text?.strip()
@@ -127,6 +127,14 @@ class newStudentVC: UIViewController {
             // creating UI alert
             alert = UIAlertController(title: "Successfully added", message: confirmationMes, preferredStyle: UIAlertControllerStyle.alert)
             
+//            let OKAction = UIAlertAction(title: "OK", style: .default, handler: { _ -> Void in
+//                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "home") as! ViewController
+//                self.present(nextViewController, animated: true, completion: nil)
+//            })
+//
+//            alert.addAction(OKAction)
+//
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:{ (action) -> Void in self.clearForm() }))
 
             self.present(alert, animated: true, completion: nil)

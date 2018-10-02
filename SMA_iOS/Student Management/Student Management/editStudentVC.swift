@@ -39,6 +39,8 @@ class editStudentVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationController?.navigationBar.tintColor = UIColor.
+        
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(touch))
         recognizer.numberOfTapsRequired = 1
         recognizer.numberOfTouchesRequired = 1
