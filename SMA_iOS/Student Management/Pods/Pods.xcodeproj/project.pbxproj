@@ -7,33 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		505421222E704CC635E93F2A6612F001 /* Pods-Student Management-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FA3987990B7972F69E5F2EB1EF130E /* Pods-Student Management-dummy.m */; };
-		739F4E1D74B2726DA2470971A8F0C83F /* Pods-Student Management-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0254A077D5F124F4A38FB407E138E02A /* Pods-Student Management-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		93455B67494A49FC91A7BF8F4E19D649 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		5CDE62F41C0EE5BF29E3FDC5E1948E66 /* Pods-Student Management-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0254A077D5F124F4A38FB407E138E02A /* Pods-Student Management-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62151F727CA59F48F1DD01A5AE3FFA02 /* Hashids-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D67E18E7886CA64AD8C29600EB9EE82 /* Hashids-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69338AF02079CC0E68D672FDE506DA5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		79A11A92B9BE842103AB15DCB556C17B /* Hashids.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6999F97855CA55679DFA35DCE0A8F6BB /* Hashids.swift */; };
+		A5C92DA61EE95AECEF263D9380488798 /* Pods-Student Management-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59FA3987990B7972F69E5F2EB1EF130E /* Pods-Student Management-dummy.m */; };
+		ACC78BB5D324A2293F1DFBBF7A9A6786 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		D70193A6B0AF161240A0694236B1C7AE /* Hashids-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 898105D9BCDEBAC0EBE072FC19E5D4A4 /* Hashids-Swift-dummy.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF9836FB87169B0F20EB583BA4D94FF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACA21BF6AB8745E62892AE32F736216A;
+			remoteInfo = "Hashids-Swift";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0254A077D5F124F4A38FB407E138E02A /* Pods-Student Management-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Student Management-umbrella.h"; sourceTree = "<group>"; };
 		24D3C785A78F72F841DC3B4D32901B9B /* Pods-Student Management.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Student Management.debug.xcconfig"; sourceTree = "<group>"; };
+		27B2DBD7B38156AFBDD98634B80CDF54 /* Hashids-Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hashids-Swift-prefix.pch"; sourceTree = "<group>"; };
+		442C74862DE1C2A25ED678AB46B07377 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
+		554D1686D37FE0EA2C799D311E780EE3 /* Hashids-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Hashids-Swift.modulemap"; sourceTree = "<group>"; };
 		59FA3987990B7972F69E5F2EB1EF130E /* Pods-Student Management-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Student Management-dummy.m"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5EC825DACA40955CE701D46443280EBE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6158F0ADE2108D60B4003DDCA38F4BED /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		68F72F987350A5033335F8652BA04BDC /* Pods-Student Management.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Student Management.modulemap"; sourceTree = "<group>"; };
+		6999F97855CA55679DFA35DCE0A8F6BB /* Hashids.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Hashids.swift; sourceTree = "<group>"; };
 		6D83C6DF1D668F894EAEF7B2B7178FDD /* Pods-Student Management-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Student Management-acknowledgements.plist"; sourceTree = "<group>"; };
+		898105D9BCDEBAC0EBE072FC19E5D4A4 /* Hashids-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Hashids-Swift-dummy.m"; sourceTree = "<group>"; };
+		8D67E18E7886CA64AD8C29600EB9EE82 /* Hashids-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Hashids-Swift-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98492FB3408B7FB42AD68F3A0AF90C29 /* Pods-Student Management-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Student Management-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A08D39CC4DD3C9C9C9954A8B49429E83 /* Hashids_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Hashids_Swift.framework; path = "Hashids-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5BD8411B13CD417B22294727D2E07A /* Pods-Student Management-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Student Management-frameworks.sh"; sourceTree = "<group>"; };
 		C0B1EB25841424FEF9E3213260E05D65 /* Pods-Student Management-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Student Management-resources.sh"; sourceTree = "<group>"; };
+		C9D164249BB00EAAA5AC9A9F43776E9F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAA416C04C2242D0D036001C254E7DD7 /* Hashids-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Hashids-Swift.xcconfig"; sourceTree = "<group>"; };
 		CEC835534EB0A38B445B350AE634D6B3 /* Pods-Student Management.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Student Management.release.xcconfig"; sourceTree = "<group>"; };
-		FF0126219E65063C5D28683AB6BD2C65 /* Pods_Student_Management.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Student_Management.framework; path = "Pods-Student Management.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E772C45326B2B4D84E3BE2D329C0190E /* Pods_Student_Management.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Student_Management.framework; path = "Pods-Student Management.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F28ECE3DDF4117CAF7676108CF2BF29E /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4C99BC49622BC1AAA64910FFC9D382EC /* Frameworks */ = {
+		0FD9E954215E0230144AA707BE2088BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93455B67494A49FC91A7BF8F4E19D649 /* Foundation.framework in Frameworks */,
+				69338AF02079CC0E68D672FDE506DA5C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20F8A86B4108321044B33E637431FA9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACC78BB5D324A2293F1DFBBF7A9A6786 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,12 +81,13 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		338D1CD74EE4E2CC5CEE010CD3CB4C3F /* Products */ = {
+		392402C79F7473E2FD3D7574C43563BC /* GoogleMaps */ = {
 			isa = PBXGroup;
 			children = (
-				FF0126219E65063C5D28683AB6BD2C65 /* Pods_Student_Management.framework */,
+				6F348C5573BE29073A4A16A96D253B93 /* Base */,
 			);
-			name = Products;
+			name = GoogleMaps;
+			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
 		4C81324863777BD9100AC7404037D235 /* Pods-Student Management */ = {
@@ -74,6 +108,30 @@
 			path = "Target Support Files/Pods-Student Management";
 			sourceTree = "<group>";
 		};
+		50E78A61272FFCEA3F837179508A8E6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				392402C79F7473E2FD3D7574C43563BC /* GoogleMaps */,
+				B126124296E56D6A57924DFD4424525B /* GooglePlaces */,
+				B2FBCD76847D4DBBE4AAF0B1675CEDA7 /* Hashids-Swift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		568EE6AE056234113867BF2A258A3498 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				554D1686D37FE0EA2C799D311E780EE3 /* Hashids-Swift.modulemap */,
+				CAA416C04C2242D0D036001C254E7DD7 /* Hashids-Swift.xcconfig */,
+				898105D9BCDEBAC0EBE072FC19E5D4A4 /* Hashids-Swift-dummy.m */,
+				27B2DBD7B38156AFBDD98634B80CDF54 /* Hashids-Swift-prefix.pch */,
+				8D67E18E7886CA64AD8C29600EB9EE82 /* Hashids-Swift-umbrella.h */,
+				C9D164249BB00EAAA5AC9A9F43776E9F /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Hashids-Swift";
+			sourceTree = "<group>";
+		};
 		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,14 +140,60 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		6F348C5573BE29073A4A16A96D253B93 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8E96EB6D1FD3D56ABBAF0BBDE5800DEB /* Frameworks */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				338D1CD74EE4E2CC5CEE010CD3CB4C3F /* Products */,
+				50E78A61272FFCEA3F837179508A8E6A /* Pods */,
+				B354E90F4A6B13A92907C2F3F65875A1 /* Products */,
 				257AF2FAA6FB3566669D068B52A21AA7 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		8E96EB6D1FD3D56ABBAF0BBDE5800DEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				442C74862DE1C2A25ED678AB46B07377 /* GoogleMapsBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B126124296E56D6A57924DFD4424525B /* GooglePlaces */ = {
+			isa = PBXGroup;
+			children = (
+				E91349EBA8B8E3DDB898703D98F0D63E /* Frameworks */,
+				D510F7886F2314DE86CED6EEE93B936B /* Resources */,
+			);
+			name = GooglePlaces;
+			path = GooglePlaces;
+			sourceTree = "<group>";
+		};
+		B2FBCD76847D4DBBE4AAF0B1675CEDA7 /* Hashids-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				6999F97855CA55679DFA35DCE0A8F6BB /* Hashids.swift */,
+				568EE6AE056234113867BF2A258A3498 /* Support Files */,
+			);
+			name = "Hashids-Swift";
+			path = "Hashids-Swift";
+			sourceTree = "<group>";
+		};
+		B354E90F4A6B13A92907C2F3F65875A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A08D39CC4DD3C9C9C9954A8B49429E83 /* Hashids_Swift.framework */,
+				E772C45326B2B4D84E3BE2D329C0190E /* Pods_Student_Management.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -100,36 +204,79 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D510F7886F2314DE86CED6EEE93B936B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6158F0ADE2108D60B4003DDCA38F4BED /* GooglePlaces.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E91349EBA8B8E3DDB898703D98F0D63E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F28ECE3DDF4117CAF7676108CF2BF29E /* GooglePlaces.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3D69077E5CF205B75B2EE119E5A66D84 /* Headers */ = {
+		9CB44B7AE9A06B47C846FABBEA185238 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				739F4E1D74B2726DA2470971A8F0C83F /* Pods-Student Management-umbrella.h in Headers */,
+				62151F727CA59F48F1DD01A5AE3FFA02 /* Hashids-Swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCB716E649EC2C6872416ABFF829D459 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CDE62F41C0EE5BF29E3FDC5E1948E66 /* Pods-Student Management-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07921338A16D285683BA3BE5E216F6F0 /* Pods-Student Management */ = {
+		17BCB1A3D5364D3A4BD6D26824DB6566 /* Pods-Student Management */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BBE80BC0CE98E9A2D7C07D8C492AC323 /* Build configuration list for PBXNativeTarget "Pods-Student Management" */;
+			buildConfigurationList = 4AC51031B29372D2BC245749FA2A4C7A /* Build configuration list for PBXNativeTarget "Pods-Student Management" */;
 			buildPhases = (
-				3D69077E5CF205B75B2EE119E5A66D84 /* Headers */,
-				6D1A01D49FD6511E2C724220CD25AF79 /* Sources */,
-				4C99BC49622BC1AAA64910FFC9D382EC /* Frameworks */,
-				C965F06E9F91DE6BFC7EC014E182667C /* Resources */,
+				CCB716E649EC2C6872416ABFF829D459 /* Headers */,
+				55C7428B8898F58A83D47A2EC9259DEF /* Sources */,
+				20F8A86B4108321044B33E637431FA9A /* Frameworks */,
+				36F6A4D2E9E25150835432155FC53D2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E5956876B61E010423758BE295F25F7 /* PBXTargetDependency */,
+			);
+			name = "Pods-Student Management";
+			productName = "Pods-Student Management";
+			productReference = E772C45326B2B4D84E3BE2D329C0190E /* Pods_Student_Management.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ACA21BF6AB8745E62892AE32F736216A /* Hashids-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3201B2889478CBBD9091AD398F9A426 /* Build configuration list for PBXNativeTarget "Hashids-Swift" */;
+			buildPhases = (
+				9CB44B7AE9A06B47C846FABBEA185238 /* Headers */,
+				F77504F61E0017C8C8AA3600305AF70B /* Sources */,
+				0FD9E954215E0230144AA707BE2088BA /* Frameworks */,
+				0B5C73BA03ED9E2F43D5F57B9019DF50 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-Student Management";
-			productName = "Pods-Student Management";
-			productReference = FF0126219E65063C5D28683AB6BD2C65 /* Pods_Student_Management.framework */;
+			name = "Hashids-Swift";
+			productName = "Hashids-Swift";
+			productReference = A08D39CC4DD3C9C9C9954A8B49429E83 /* Hashids_Swift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -149,17 +296,25 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 338D1CD74EE4E2CC5CEE010CD3CB4C3F /* Products */;
+			productRefGroup = B354E90F4A6B13A92907C2F3F65875A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07921338A16D285683BA3BE5E216F6F0 /* Pods-Student Management */,
+				ACA21BF6AB8745E62892AE32F736216A /* Hashids-Swift */,
+				17BCB1A3D5364D3A4BD6D26824DB6566 /* Pods-Student Management */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C965F06E9F91DE6BFC7EC014E182667C /* Resources */ = {
+		0B5C73BA03ED9E2F43D5F57B9019DF50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36F6A4D2E9E25150835432155FC53D2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -169,22 +324,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6D1A01D49FD6511E2C724220CD25AF79 /* Sources */ = {
+		55C7428B8898F58A83D47A2EC9259DEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				505421222E704CC635E93F2A6612F001 /* Pods-Student Management-dummy.m in Sources */,
+				A5C92DA61EE95AECEF263D9380488798 /* Pods-Student Management-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F77504F61E0017C8C8AA3600305AF70B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D70193A6B0AF161240A0694236B1C7AE /* Hashids-Swift-dummy.m in Sources */,
+				79A11A92B9BE842103AB15DCB556C17B /* Hashids.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6E5956876B61E010423758BE295F25F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Hashids-Swift";
+			target = ACA21BF6AB8745E62892AE32F736216A /* Hashids-Swift */;
+			targetProxy = BF9836FB87169B0F20EB583BA4D94FF0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		7A371E3996D9F57B789DA54723A67643 /* Debug */ = {
+		15388D4A70DAE9EA7D22F7E201AC6737 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24D3C785A78F72F841DC3B4D32901B9B /* Pods-Student Management.debug.xcconfig */;
+			baseConfigurationReference = CAA416C04C2242D0D036001C254E7DD7 /* Hashids-Swift.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -195,19 +367,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Student Management/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Hashids-Swift/Hashids-Swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Hashids-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Student Management/Pods-Student Management.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/Hashids-Swift/Hashids-Swift.modulemap";
+				PRODUCT_MODULE_NAME = Hashids_Swift;
+				PRODUCT_NAME = Hashids_Swift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -270,6 +442,114 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		9770BFEE71D23AD74C58EE37772A0DB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24D3C785A78F72F841DC3B4D32901B9B /* Pods-Student Management.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Student Management/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Student Management/Pods-Student Management.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A4D52161ED818A74C573C5924974D370 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAA416C04C2242D0D036001C254E7DD7 /* Hashids-Swift.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Hashids-Swift/Hashids-Swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Hashids-Swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Hashids-Swift/Hashids-Swift.modulemap";
+				PRODUCT_MODULE_NAME = Hashids_Swift;
+				PRODUCT_NAME = Hashids_Swift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A9D3D229FA1BDE29764FAE3207B25500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC835534EB0A38B445B350AE634D6B3 /* Pods-Student Management.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Student Management/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Student Management/Pods-Student Management.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -337,41 +617,6 @@
 			};
 			name = Debug;
 		};
-		EB9F2E12F90EE69E99F5CE79682223F5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEC835534EB0A38B445B350AE634D6B3 /* Pods-Student Management.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Student Management/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Student Management/Pods-Student Management.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,11 +629,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BBE80BC0CE98E9A2D7C07D8C492AC323 /* Build configuration list for PBXNativeTarget "Pods-Student Management" */ = {
+		4AC51031B29372D2BC245749FA2A4C7A /* Build configuration list for PBXNativeTarget "Pods-Student Management" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7A371E3996D9F57B789DA54723A67643 /* Debug */,
-				EB9F2E12F90EE69E99F5CE79682223F5 /* Release */,
+				9770BFEE71D23AD74C58EE37772A0DB0 /* Debug */,
+				A9D3D229FA1BDE29764FAE3207B25500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3201B2889478CBBD9091AD398F9A426 /* Build configuration list for PBXNativeTarget "Hashids-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15388D4A70DAE9EA7D22F7E201AC6737 /* Debug */,
+				A4D52161ED818A74C573C5924974D370 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

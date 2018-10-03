@@ -138,6 +138,9 @@ class newStudentVC: UIViewController {
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:{ (action) -> Void in self.clearForm() }))
 
             self.present(alert, animated: true, completion: nil)
+            
+            // let the observer know that we should update the studentTable datasource
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         
         }
         

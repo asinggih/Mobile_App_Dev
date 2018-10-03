@@ -6,5 +6,6 @@ target 'Student Management' do
   use_frameworks!
 
   # Pods for Student Management
-
+  pod 'GooglePlaces'
+  pod 'Hashids-Swift', :podspec => "https://raw.githubusercontent.com/malczak/hashids/master/Hashids-Swift.podspec"
 end
