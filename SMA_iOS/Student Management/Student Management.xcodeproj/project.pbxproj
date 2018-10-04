@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D3BCA9121665180000BB7BB /* examListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BCA9021665180000BB7BB /* examListVC.swift */; };
 		2D469F2D2160C36F001C3A10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D469F2C2160C36F001C3A10 /* AppDelegate.swift */; };
 		2D469F2F2160C36F001C3A10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D469F2E2160C36F001C3A10 /* ViewController.swift */; };
 		2D469F322160C36F001C3A10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D469F302160C36F001C3A10 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D3BCA9021665180000BB7BB /* examListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = examListVC.swift; sourceTree = "<group>"; };
 		2D469F292160C36F001C3A10 /* Student Management.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Student Management.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D469F2C2160C36F001C3A10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D469F2E2160C36F001C3A10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				2D469F2C2160C36F001C3A10 /* AppDelegate.swift */,
 				2D469F2E2160C36F001C3A10 /* ViewController.swift */,
 				2D469F302160C36F001C3A10 /* Main.storyboard */,
+				2D3BCA9021665180000BB7BB /* examListVC.swift */,
 				2D469F472162E7D2001C3A10 /* Utils.swift */,
 				2D469F452162E5CF001C3A10 /* editStudentVC.swift */,
 				2D469F4321610BAB001C3A10 /* newStudentVC.swift */,
@@ -197,15 +200,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Student Management/Pods-Student Management-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Hashids-Swift/Hashids_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hashids_Swift.framework",
 			);
@@ -219,15 +218,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Student Management/Pods-Student Management-resources.sh",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
@@ -243,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D3BCA9121665180000BB7BB /* examListVC.swift in Sources */,
 				2D469F352160C36F001C3A10 /* Student_Management.xcdatamodeld in Sources */,
 				2D469F2F2160C36F001C3A10 /* ViewController.swift in Sources */,
 				2D469F462162E5CF001C3A10 /* editStudentVC.swift in Sources */,

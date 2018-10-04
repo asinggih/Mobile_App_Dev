@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     var studentList:[Student] = []
     
     @IBOutlet weak var studentsTableView: UITableView!
+//    @IBOutlet weak var studentCell: StudentCell!
     
     // Table editing related buttons
     @IBOutlet weak var cancelEdit: UIBarButtonItem!
@@ -35,8 +36,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var examContoller: UIBarButtonItem!
     @IBOutlet weak var studentController: UIBarButtonItem!
     
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var studentToBePassed:Student?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -174,9 +176,6 @@ class ViewController: UIViewController {
         let selected_rows =  studentsTableView.indexPathsForSelectedRows ?? []
         
         if selected_rows.count > 0{
-//            print("here")
-//            print(selected_rows.count)
-            
             /* NOTE:
              Array needs to be reversed so that it deletes
              the item with higher index first. Otherwise the list
@@ -226,6 +225,15 @@ class ViewController: UIViewController {
         appDelegate.saveContext()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "editStuSegue" {
+            let editStuVC = segue.destination as! editStudentVC
+//            editStuVC.student = studentToBePassed
+            editStuVC.student = studentList[(studentsTableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -268,6 +276,10 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        studentToBePassed = studentList[indexPath.row]
+        if !studentsTableView.isEditing{
+            studentsTableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     

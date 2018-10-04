@@ -24,22 +24,41 @@ class editStudentVC: UIViewController {
     @IBOutlet weak var dobInput: UITextField!
     @IBOutlet weak var addressInput: UITextField!
     
-    
     @IBOutlet weak var programSelection: UITextField!
+    @IBOutlet weak var addExamBut: UIButton!
+    
+    
     
     var datePicker: UIDatePicker = UIDatePicker()
     var genderPicker: UIPickerView = UIPickerView()     // tag = 1
     var programPicker: UIPickerView = UIPickerView()    // tag = 2
     
     var genderList:[String] = []
-    var programList:[String] = []
+    var programList:[Program] = []
     
     var dateFormatter = DateFormatter()
+
+    var student:Student!
+    var programStorage = Program()
+    var examList:[Exam] = []
+    
+    var fn:String!
+    var ln:String!
+    var gender:String!
+    var address:String!
+    var prog:String!
+    
+    var alert:UIAlertController!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController?.navigationBar.tintColor = UIColor.
+        /*
+         handle scrollview and picker touch selection.
+         Without this below, we can't touch to exit picker view
+        */
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(touch))
         recognizer.numberOfTapsRequired = 1
@@ -50,24 +69,25 @@ class editStudentVC: UIViewController {
         
         genderList = ["Male", "Female", "Other"]
         
-        programList = ["Master of ICT",
-                       "Master of Data Science",
-                       "Bachelor of Arts",
-                       "Bachelor of Engineering",
-                       "Bachelor of Science"]
+        programList = getProgramList()
         
         // Make the date format pretty for input
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         
-        // offsetting default date from current year
-        let calendar = Calendar.current
-        let backDate = calendar.date(byAdding: .year, value: -20, to: Date())
+        /*
+         Populate data of student from our db
+         */
+        studentID.text = student.studentID
+        firstNameInput.text = student.firstName
+        lastNameInput.text = student.lastName
+        genderSelection.text = student.gender
+        dobInput.text = dateFormatter.string(for: student.dob!)
+        addressInput.text = student.address
+        programSelection.text = student.programs?.name
+        programStorage = student.programs!
         
-        datePicker.datePickerMode = .date
-        datePicker.setDate(backDate!, animated: true)
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)    // run the datePickerChanged method
-        // when value of datePicker is changed
+        print(student.dob!)
         
         genderPicker.tag = 1
         genderPicker.dataSource = self
@@ -78,12 +98,12 @@ class editStudentVC: UIViewController {
         programPicker.delegate = self
         
         
-        
         // trigger respective picker views
         dobInput.inputView = datePicker
         genderSelection.inputView = genderPicker
         programSelection.inputView = programPicker
         
+        addExamBut.setTitle("\u{2b}", for: .normal) 
         
     }
 
@@ -91,22 +111,108 @@ class editStudentVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    /* --------------------------------------------------------
-                Snippets are from Apoorv Mote
-     --------------------------------------------------------*/
-    @objc func datePickerChanged(_ sender: UIDatePicker){
-        dobInput.text = dateFormatter.string(from: sender.date)
-    }
-    
-//    // dismisses any editing when touched somewhere else
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        view.endEditing(true)
-//    }
-    
-    // ------------------- end snippet---------------------------
-    
     @objc func touch() {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func addExamButton(_ sender: Any) {
+        print("hello")
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        
+        fn = firstNameInput.text?.strip()
+        ln = lastNameInput.text?.strip()
+        address = addressInput.text?.strip()
+        gender = genderSelection.text?.strip()
+        prog = programSelection.text?.strip()
+        
+        if isValid() {
+            
+            processData(fn, ln, gender, address, programStorage, examList)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            
+            let confirmationMes = "\(fn!) \(ln!)"
+            alert = UIAlertController(title: "Successfully updated", message: confirmationMes, preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+            
+            
+        }
+    }
+    
+    private func isValid() -> Bool{
+        
+        if fn.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if ln.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if address.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if gender.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        if prog.isEmpty{
+            requiredWarning.isHidden = false
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    private func processData(_ firstName: String,
+                             _ lastName: String,
+                             _ gender: String,
+                             _ address: String,
+                             _ program: Program,
+                             _ examList:[Exam]) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        student.firstName = firstName
+        student.lastName = lastName
+        student.address = address
+        student.programs = programStorage
+        student.gender = gender
+        
+        if examList.count > 0 {
+            for exam in examList{
+                student.addToExams(exam)
+            }
+        }
+        
+        appDelegate.saveContext()
+        
+    }
+    
+    
+    
+    
+    private func getProgramList() -> [Program]{
+        
+        var list:[Program] = []
+        do{
+            list = try context.fetch(Program.fetchRequest())
+        }
+        catch{
+            print("Fetching Error")
+        }
+        
+        return list
     }
 }
 
@@ -115,7 +221,7 @@ extension editStudentVC: UIPickerViewDelegate{
         if pickerView.tag == 1{
             return genderList[row]
         }
-        return programList[row]
+        return programList[row].name
         
     }
 }
@@ -132,6 +238,15 @@ extension editStudentVC: UIPickerViewDataSource{
         return programList.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1{
+            genderSelection.text = genderList[row]
+        }
+        else{
+            programStorage = programList[row]
+            programSelection.text = programList[row].name
+        }
+    }
     
 }
 
