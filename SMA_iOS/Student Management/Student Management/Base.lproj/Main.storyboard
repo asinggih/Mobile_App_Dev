@@ -211,38 +211,60 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="examCell" rowHeight="88" id="8Qf-1M-SuT" customClass="ExamCell" customModule="Student_Management" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="examCell" rowHeight="117" id="8Qf-1M-SuT" customClass="ExamCell" customModule="Student_Management" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Qf-1M-SuT" id="kZi-Wy-8oa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Structures and Algo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-pw-LvH">
-                                                    <rect key="frame" x="15" y="11" width="345" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Structures and Algo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-pw-LvH">
+                                                    <rect key="frame" x="24" y="11" width="345" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thu, 12/19/18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSr-D0-eJj">
-                                                    <rect key="frame" x="15" y="33" width="103" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu, 12/19/18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSr-D0-eJj">
+                                                    <rect key="frame" x="24" y="42" width="103" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbG-PY-3pf">
-                                                    <rect key="frame" x="15" y="56" width="44" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbG-PY-3pf">
+                                                    <rect key="frame" x="174" y="42" width="44" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WSU SCC 4.02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVO-x1-kye">
+                                                    <rect key="frame" x="24" y="79" width="116" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="hbG-PY-3pf" secondAttribute="bottom" constant="53.5" id="1Ip-44-N5Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="hbG-PY-3pf" secondAttribute="trailing" constant="157" id="2v9-pX-gPt"/>
+                                                <constraint firstAttribute="trailing" secondItem="AnP-pw-LvH" secondAttribute="trailing" constant="6" id="JAf-2q-1ZA"/>
+                                                <constraint firstAttribute="bottom" secondItem="aSr-D0-eJj" secondAttribute="bottom" constant="53.5" id="JNQ-oE-fht"/>
+                                                <constraint firstAttribute="trailing" secondItem="sVO-x1-kye" secondAttribute="trailing" constant="235" id="JQ1-ee-zbK"/>
+                                                <constraint firstItem="sVO-x1-kye" firstAttribute="top" secondItem="kZi-Wy-8oa" secondAttribute="top" constant="79" id="Q32-Av-ahf"/>
+                                                <constraint firstAttribute="bottom" secondItem="AnP-pw-LvH" secondAttribute="bottom" constant="69.5" id="Rbn-jZ-Sgh"/>
+                                                <constraint firstItem="sVO-x1-kye" firstAttribute="leading" secondItem="kZi-Wy-8oa" secondAttribute="leading" constant="24" id="VDh-Sn-xAG"/>
+                                                <constraint firstItem="hbG-PY-3pf" firstAttribute="leading" secondItem="kZi-Wy-8oa" secondAttribute="leading" constant="174" id="Xgf-O3-dwl"/>
+                                                <constraint firstItem="aSr-D0-eJj" firstAttribute="top" secondItem="kZi-Wy-8oa" secondAttribute="top" constant="42" id="cSL-oa-Sza"/>
+                                                <constraint firstAttribute="trailing" secondItem="aSr-D0-eJj" secondAttribute="trailing" constant="248" id="ezZ-hI-4vV"/>
+                                                <constraint firstItem="AnP-pw-LvH" firstAttribute="leading" secondItem="kZi-Wy-8oa" secondAttribute="leading" constant="24" id="jJZ-Dj-irN"/>
+                                                <constraint firstItem="aSr-D0-eJj" firstAttribute="leading" secondItem="kZi-Wy-8oa" secondAttribute="leading" constant="24" id="kZL-gg-4fE"/>
+                                                <constraint firstItem="hbG-PY-3pf" firstAttribute="top" secondItem="kZi-Wy-8oa" secondAttribute="top" constant="42" id="rvb-6f-E7P"/>
+                                                <constraint firstAttribute="bottom" secondItem="sVO-x1-kye" secondAttribute="bottom" constant="18.5" id="v1f-Co-bEA"/>
+                                                <constraint firstItem="AnP-pw-LvH" firstAttribute="top" secondItem="kZi-Wy-8oa" secondAttribute="top" constant="11" id="xWS-LT-pig"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="examDate" destination="aSr-D0-eJj" id="8m2-wY-c2d"/>
+                                            <outlet property="examLocation" destination="sVO-x1-kye" id="nEp-Ca-3uA"/>
                                             <outlet property="examTime" destination="hbG-PY-3pf" id="E3B-sh-qfP"/>
                                             <outlet property="examTitle" destination="AnP-pw-LvH" id="yRU-5I-383"/>
                                         </connections>
@@ -269,11 +291,107 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="Fux-f6-VuR"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Dvd-FA-31p"/>
+                    <navigationItem key="navigationItem" id="Dvd-FA-31p">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="tRg-qZ-i8y">
+                            <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Select All" id="quW-xP-piM">
+                                <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </barButtonItem>
+                            <barButtonItem title="Add Exam" id="VC9-jM-R0L">
+                                <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="z8g-Fh-xkZ" kind="show" id="1Ii-U6-ghe"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="examTableView" destination="NRg-Yv-NDd" id="cH1-SF-Dyi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yU8-ri-Lre" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="364" y="1360.569715142429"/>
+        </scene>
+        <!--New Exam-->
+        <scene sceneID="1qt-sn-72R">
+            <objects>
+                <viewController id="Gd1-HH-XAe" customClass="newExamVC" customModule="Student_Management" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gRG-u4-AgR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exam Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g5q-GM-CCx">
+                                <rect key="frame" x="16" y="113" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exam Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HZC-gb-O7w">
+                                <rect key="frame" x="16" y="160" width="197" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exam Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qbu-h3-eMe">
+                                <rect key="frame" x="245" y="160" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Exam Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nlh-wu-8kS">
+                                <rect key="frame" x="16" y="212" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lw7-eb-bIv">
+                                <rect key="frame" x="127" y="315" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.41218075160000001" green="0.90393143890000005" blue="0.50525188450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.1762384176" green="0.21179398890000001" blue="0.29022714500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="submit:" destination="Gd1-HH-XAe" eventType="touchUpInside" id="CuJ-Lk-TDk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*all fields required" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0N-Ff-brx">
+                                <rect key="frame" x="215" y="77" width="143" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="DAP-eA-Bd9"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Exam" id="2WG-g8-sbY">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="XNr-v4-26L">
+                            <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancel:" destination="Gd1-HH-XAe" id="sMc-YH-EAI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="examDateInput" destination="HZC-gb-O7w" id="5sA-Sc-a5q"/>
+                        <outlet property="examDateTimeInput" destination="qbu-h3-eMe" id="vCL-Dd-c1R"/>
+                        <outlet property="examLocationInput" destination="Nlh-wu-8kS" id="Mbg-dR-eAq"/>
+                        <outlet property="examNameInput" destination="g5q-GM-CCx" id="X1e-5i-fGe"/>
+                        <outlet property="requiredWarning" destination="e0N-Ff-brx" id="v3M-6T-ACX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6j8-Pt-YwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2188" y="1360.569715142429"/>
         </scene>
         <!--New Student-->
         <scene sceneID="rPU-vA-4ON">
@@ -647,6 +765,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a9a-zi-p4i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-452" y="1361"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Qhc-el-6q9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z8g-Fh-xkZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0bv-Z5-IEu">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1762384176" green="0.21179398890000001" blue="0.29022714500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gd1-HH-XAe" kind="relationship" relationship="rootViewController" id="vMT-D5-V3R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfF-45-xWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1359" y="1361"/>
         </scene>
     </scenes>
     <resources>
