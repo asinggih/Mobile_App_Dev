@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hashids_Swift
 
 class newStudentVC: UIViewController {
 
@@ -127,14 +128,6 @@ class newStudentVC: UIViewController {
             // creating UI alert
             alert = UIAlertController(title: "Successfully added", message: confirmationMes, preferredStyle: UIAlertControllerStyle.alert)
             
-//            let OKAction = UIAlertAction(title: "OK", style: .default, handler: { _ -> Void in
-//                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "home") as! ViewController
-//                self.present(nextViewController, animated: true, completion: nil)
-//            })
-//
-//            alert.addAction(OKAction)
-//
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:{ (action) -> Void in self.clearForm() }))
 
             self.present(alert, animated: true, completion: nil)
@@ -201,6 +194,7 @@ class newStudentVC: UIViewController {
     
         let student = Student(context: context)
         
+        student.studentID = generateStudentID(dob)
         student.firstName = firstName
         student.lastName = lastName
         student.address = address
@@ -224,6 +218,23 @@ class newStudentVC: UIViewController {
         
         return list
     }
+    
+    private func generateStudentID (_ seed:Date) -> String{
+
+        
+        let sanitisedSeed = String(describing: seed).replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        
+        let strippedSanitised = Int(sanitisedSeed.dropLast(4))
+    
+        let charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        let hashids = Hashids(salt: "MAD", minHashLength: 4, alphabet: charSet)
+        
+        let studentID = hashids.encode(strippedSanitised!)
+
+        return studentID!
+    }
+    
+    
 }
 
 

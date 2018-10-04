@@ -18,12 +18,13 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="studentID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="exams" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exam" inverseName="exams" inverseEntity="Exam" syncable="YES"/>
         <relationship name="programs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Program" inverseName="programs" inverseEntity="Program" syncable="YES"/>
     </entity>
     <elements>
         <element name="Exam" positionX="-36" positionY="128" width="128" height="133"/>
         <element name="Program" positionX="340" positionY="135" width="128" height="73"/>
-        <element name="Student" positionX="153" positionY="-102" width="128" height="148"/>
+        <element name="Student" positionX="153" positionY="-102" width="128" height="165"/>
     </elements>
 </model>
