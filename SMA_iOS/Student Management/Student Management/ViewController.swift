@@ -52,7 +52,6 @@ class ViewController: UIViewController {
         // Adding observer(a listener) to wait for triggering studentList reload method
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name(rawValue: "load"), object: nil)
 
-        
         getStudents()
         
         // tableView actions setup
@@ -71,10 +70,10 @@ class ViewController: UIViewController {
         if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
             
             let touchPoint = longPressGestureRecognizer.location(in: self.studentsTableView)
-            if let indexPath = studentsTableView.indexPathForRow(at: touchPoint) {
-                print(indexPath)
+            if studentsTableView.indexPathForRow(at: touchPoint) != nil {
                 self.studentsTableView.isEditing = true
                 toggleEdittingButtons()
+                
             }
         }
     }
@@ -108,8 +107,7 @@ class ViewController: UIViewController {
             delSelection.isHidden = false
             studentController.isEnabled = false
             examContoller.isEnabled = false
-        
-            
+
         }
         else{
             cancelEdit.title = ""
@@ -141,8 +139,7 @@ class ViewController: UIViewController {
         } catch {
             print ("There was an error")
         }
-        
-        
+
     }
     
     private func preloadProgramsData() {
@@ -160,22 +157,73 @@ class ViewController: UIViewController {
         appDelegate.saveContext()
     }
 
-    @IBAction func deleteStudents(_ sender: Any) {
-        clearStudentsList()
-        getStudents()
-        self.studentsTableView.reloadData()
-    }
-    
     @IBAction func cancelEditAction(_ sender: Any) {
         self.studentsTableView.isEditing = false
         toggleEdittingButtons()
     }
+    
+    // Select all button function.
     @IBAction func selectAllStudents(_ sender: Any) {
         for section in 0..<studentsTableView.numberOfSections {
             for row in 0..<studentsTableView.numberOfRows(inSection: section) {
                 studentsTableView.selectRow(at: IndexPath(row: row, section: section), animated: false, scrollPosition: .none)
             }
         }
+    }
+    @IBAction func deleteSelection(_ sender: Any) {
+        let selected_rows =  studentsTableView.indexPathsForSelectedRows ?? []
+        
+        if selected_rows.count > 0{
+//            print("here")
+//            print(selected_rows.count)
+            
+            /* NOTE:
+             Array needs to be reversed so that it deletes
+             the item with higher index first. Otherwise the list
+             will go out of range since the index gets smaller and smaller
+             with the removal
+            */
+            let alert = generateAlert(selected_rows.count, selected_rows)
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    func generateAlert(_ studentsToBeDeleted:Int, _ toBeDeletedArray:[IndexPath]) -> UIAlertController{
+        let numOfStudents = String(studentsToBeDeleted)
+        let message = "You are about to delete \(numOfStudents) sad students"
+        
+        let alert = UIAlertController(title: "Are you sure ?",
+                                      message: message,
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okButton = UIAlertAction(title: "Yes",
+                                     style: UIAlertActionStyle.default,
+                                     handler: {action in self.comboDelete(toBeDeletedArray)})
+        
+        let cancelButton = UIAlertAction(title: "No",
+                                         style: UIAlertActionStyle.default,
+                                         handler: nil)
+        
+        alert.addAction(cancelButton)
+        alert.addAction(okButton)
+        
+        return alert
+    }
+    
+    func comboDelete(_ itemsToBeDeleted:[IndexPath]) {
+        
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        
+        for indexPath in itemsToBeDeleted.reversed(){
+            context.delete(studentList[indexPath.row])
+            self.studentList.remove(at: indexPath.row)
+            studentsTableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        appDelegate.saveContext()
     }
     
     override func didReceiveMemoryWarning() {
@@ -217,6 +265,9 @@ extension ViewController: UITableViewDataSource{
         studentCell.sID.text = "\(student.studentID!)"
         studentCell.sProgram.text = student.programs?.name
         return studentCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
     
