@@ -280,6 +280,7 @@
                                 </state>
                                 <connections>
                                     <action selector="deleteSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HGj-kZ-xzu"/>
+                                    <action selector="deleteSelection:" destination="Vzm-uJ-2f2" eventType="touchUpInside" id="aO6-3c-w1t"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYM-oq-E5j">
@@ -301,6 +302,9 @@
                         <rightBarButtonItems>
                             <barButtonItem id="quW-xP-piM">
                                 <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="selectAllExams:" destination="Vzm-uJ-2f2" id="jJu-mQ-KbW"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem id="VC9-jM-R0L">
                                 <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -315,7 +319,7 @@
                         <outlet property="cancelButton" destination="tRg-qZ-i8y" id="fzK-FE-qUo"/>
                         <outlet property="deleteSel" destination="bNc-AJ-snP" id="82Q-Rn-hoY"/>
                         <outlet property="examTableView" destination="NRg-Yv-NDd" id="cH1-SF-Dyi"/>
-                        <outlet property="selectAll" destination="quW-xP-piM" id="7kw-5q-rfG"/>
+                        <outlet property="selectAll" destination="quW-xP-piM" id="Ldx-bM-QaB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yU8-ri-Lre" userLabel="First Responder" sceneMemberID="firstResponder"/>
