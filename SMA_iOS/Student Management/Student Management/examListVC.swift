@@ -24,28 +24,74 @@ class examListVC: UIViewController {
     
     var examList:[Exam] = []
     
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var addExam: UIBarButtonItem!
+    @IBOutlet weak var selectAll: UIBarButtonItem!
+    @IBOutlet weak var deleteSel: UIButton!
+    
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        toggleEdittingButtons()
         getExams()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name(rawValue: "reloadExam"), object: nil)
         
         examTableView.delegate = self
         examTableView.dataSource = self
         
+        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(_:)))
+        longPressGesture.minimumPressDuration = 1.0 // 1 second press
+        examTableView.addGestureRecognizer(longPressGesture)
+        examTableView.allowsMultipleSelectionDuringEditing = true
         
+
     }
     
     @objc func refreshTable(notification: NSNotification){
         getExams()
         self.examTableView.reloadData()
     }
-
+    
+    @objc func longPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        
+        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.examTableView)
+            if examTableView.indexPathForRow(at: touchPoint) != nil {
+                self.examTableView.isEditing = true
+                toggleEdittingButtons()
+                
+            }
+        }
+    }
+    @IBAction func cancel(_ sender: Any) {
+        self.examTableView.isEditing = false
+        toggleEdittingButtons()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func toggleEdittingButtons(){
+        if self.examTableView.isEditing {
+            cancelButton.title = "Cancel"
+            selectAll.title = "Select all"
+            addExam.title = ""
+            deleteSel.isHidden = false
+            
+            
+        }
+        else{
+            cancelButton.title = ""
+            selectAll.title = ""
+            addExam.title = "Add exam"
+            deleteSel.isHidden = true
+        }
+        
     }
     
     private func getExams() {
@@ -55,6 +101,28 @@ class examListVC: UIViewController {
         catch{
             examList = []
         }
+    }
+    
+    private func toggleItem() {
+//        if self.studentsTableView.isEditing == true{
+//            cancelEdit.title = "Cancel"
+//            selectAll.title = "Select all"
+//            addStudent.title = ""
+//            delSelection.isHidden = false
+//            studentController.isEnabled = false
+//            examContoller.isEnabled = false
+//
+//        }
+//        else{
+//            cancelEdit.title = ""
+//            selectAll.title = ""
+//            addStudent.title = "Add student"
+//            delSelection.isHidden = true
+//            studentController.isEnabled = true
+//            examContoller.isEnabled = true
+//        }
+        
+       
     }
 
 

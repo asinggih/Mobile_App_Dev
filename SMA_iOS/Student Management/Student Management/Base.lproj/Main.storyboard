@@ -292,14 +292,17 @@
                         <viewLayoutGuide key="safeArea" id="Fux-f6-VuR"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dvd-FA-31p">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="tRg-qZ-i8y">
+                        <barButtonItem key="leftBarButtonItem" id="tRg-qZ-i8y">
                             <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancel:" destination="Vzm-uJ-2f2" id="dZ1-Ve-tJI"/>
+                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Select All" id="quW-xP-piM">
+                            <barButtonItem id="quW-xP-piM">
                                 <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
-                            <barButtonItem title="Add Exam" id="VC9-jM-R0L">
+                            <barButtonItem id="VC9-jM-R0L">
                                 <color key="tintColor" red="0.31750452518463135" green="0.97580248117446899" blue="0.54007154703140259" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="z8g-Fh-xkZ" kind="show" id="1Ii-U6-ghe"/>
@@ -308,7 +311,11 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addExam" destination="VC9-jM-R0L" id="e9A-fh-444"/>
+                        <outlet property="cancelButton" destination="tRg-qZ-i8y" id="fzK-FE-qUo"/>
+                        <outlet property="deleteSel" destination="bNc-AJ-snP" id="82Q-Rn-hoY"/>
                         <outlet property="examTableView" destination="NRg-Yv-NDd" id="cH1-SF-Dyi"/>
+                        <outlet property="selectAll" destination="quW-xP-piM" id="7kw-5q-rfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yU8-ri-Lre" userLabel="First Responder" sceneMemberID="firstResponder"/>
