@@ -621,7 +621,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="6Ig-DD-e4v">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentExamCell" rowHeight="84" id="6Ig-DD-e4v" customClass="StudentExamCell" customModule="Student_Management" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="352" height="84"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ig-DD-e4v" id="pUa-fj-JOE">
@@ -640,8 +640,15 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WSU SCC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anl-0H-zsN">
+                                                                    <rect key="frame" x="15" y="52" width="78" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myp-30-Y1b">
-                                                                    <rect key="frame" x="15" y="51" width="44" height="21"/>
+                                                                    <rect key="frame" x="169" y="28" width="44" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -659,6 +666,12 @@
                                                                 <constraint firstItem="2lD-N1-EfP" firstAttribute="top" secondItem="pUa-fj-JOE" secondAttribute="top" constant="7" id="uRN-Gd-KBP"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="examDate" destination="adC-xY-mc9" id="jVf-x6-875"/>
+                                                            <outlet property="examLocation" destination="Anl-0H-zsN" id="AO2-Jo-Gdl"/>
+                                                            <outlet property="examTime" destination="Myp-30-Y1b" id="RQP-2A-uYh"/>
+                                                            <outlet property="examTitle" destination="2lD-N1-EfP" id="dT3-4m-wkk"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>

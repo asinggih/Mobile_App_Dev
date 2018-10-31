@@ -32,6 +32,8 @@ class examListVC: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         toggleEdittingButtons()
@@ -46,7 +48,10 @@ class examListVC: UIViewController {
         examTableView.addGestureRecognizer(longPressGesture)
         examTableView.allowsMultipleSelectionDuringEditing = true
         
-
+        // Make the date format pretty for input
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
     }
     
     @objc func refreshTable(notification: NSNotification){
@@ -188,6 +193,7 @@ extension examListVC: UITableViewDataSource{
         
         examCell.examTitle.text = exam.name
         examCell.examTime.text = exam.time
+        examCell.examDate.text = dateFormatter.string(from: exam.date!)
         examCell.examLocation.text = exam.location
         
         return examCell

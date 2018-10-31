@@ -8,6 +8,15 @@
 
 import UIKit
 
+class StudentExamCell: UITableViewCell{
+    
+    @IBOutlet weak var examTitle: UILabel!
+    @IBOutlet weak var examDate: UILabel!
+    @IBOutlet weak var examTime: UILabel!
+    @IBOutlet weak var examLocation: UILabel!
+    
+}
+
 class editStudentVC: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -199,9 +208,6 @@ class editStudentVC: UIViewController {
         
     }
     
-    
-    
-    
     private func getProgramList() -> [Program]{
         
         var list:[Program] = []
@@ -250,6 +256,30 @@ extension editStudentVC: UIPickerViewDataSource{
     
 }
 
+extension editStudentVC: UITableViewDelegate{
+    
+}
+
+extension editStudentVC: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return examList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let studentExamCell = tableView.dequeueReusableCell(withIdentifier: "studentExamCell", for: indexPath) as! ExamCell
+        
+        let exam = examList[indexPath.row]
+        
+        studentExamCell.examTitle.text = exam.name
+        studentExamCell.examTime.text = exam.time
+        studentExamCell.examLocation.text = exam.location
+        
+        return studentExamCell
+    }
+    
+    
+}
 
 
 
